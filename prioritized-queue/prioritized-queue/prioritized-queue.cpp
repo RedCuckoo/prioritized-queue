@@ -2,9 +2,22 @@
 //
 
 #include <iostream>
+#include "ListPriorQueue.h"
+#include "Pair.h"
 
 int main()
 {
+	ListPriorQueue <int> a;
+	Pair<int, unsigned int> d = { 7,4 };
+	Pair<int, unsigned int> b = { 4,3 };
+	Pair<int, unsigned int> n = { 6,3 };
+	Pair<int, unsigned int> c = { 5,2 };
+	
+	a.enqueue(n);
+	a.enqueue(c);
+	a.enqueue(d);
+	a.enqueue(b);
+	a.out();
     std::cout << "Hello World!\n";
 }
 

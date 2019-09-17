@@ -153,6 +153,10 @@
   <ItemGroup>
     <ClCompile Include="prioritized-queue.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ListPriorQueue.h" />
+    <ClInclude Include="Pair.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
