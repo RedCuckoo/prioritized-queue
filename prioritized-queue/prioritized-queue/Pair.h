@@ -9,7 +9,7 @@ private:
 	S value;
 	T priority;
 public:
-	Pair(S val, T prior) {
+	Pair(S val, T prior){
 		value = val;
 		priority = prior;
 	}
@@ -51,6 +51,5 @@ public:
 	}
 
 };
-
 
 #endif // !PAIR_H

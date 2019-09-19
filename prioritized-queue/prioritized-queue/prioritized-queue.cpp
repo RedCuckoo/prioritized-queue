@@ -5,25 +5,32 @@
 #include "ListPriorQueue.h"
 #include "Pair.h"
 #include <list>
+#include "List.h"
 
 int main()
 {
-	ListPriorQueue <int> a;
-	Pair<int, unsigned int> d = { 7,4 };
-	Pair<int, unsigned int> b = { 4,3 };
-	Pair<int, unsigned int> n = { 6,3 };
-	Pair<int, unsigned int> c = { 5,2 };
-	
-	a.add(n);
-	a.add(c);
-	a.add(d);
-	a.add(d);
-	a.add(b);
-	a.remove(d);
-	
+	//ListPriorQueue <int> a;
+	//Pair<int, unsigned int> d = { 7,4 };
+	//Pair<int, unsigned int> b = { 4,3 };
+	//Pair<int, unsigned int> n = { 6,3 };
+	//Pair<int, unsigned int> c = { 5,2 };
+	//
+	//a.add(n);
+	//a.add(c);
+	//a.add(d);
+	//a.add(d);
+	//a.add(b);
+	//a.remove(d);
+	//
 
+	//a.out();
+
+	List<int> a;
+	a.push_back(4);
+	a.push_back(6);
+	a.push_back(3);
 	a.out();
-    std::cout << "Hello World!\n";
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

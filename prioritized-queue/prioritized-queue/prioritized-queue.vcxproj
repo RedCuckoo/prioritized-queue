@@ -154,6 +154,7 @@
     <ClCompile Include="prioritized-queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="List.h" />
     <ClInclude Include="ListPriorQueue.h" />
     <ClInclude Include="Pair.h" />
   </ItemGroup>
