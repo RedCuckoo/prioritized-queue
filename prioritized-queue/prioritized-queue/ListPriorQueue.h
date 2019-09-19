@@ -11,18 +11,27 @@ private:
 	std::list<Pair<T, unsigned int>>container;
 	
 public:
-	void enqueue(Pair<T, unsigned int> elem){
+	void add(Pair<T, unsigned int> elem){
 		if (container.empty()) {
 			container.push_back(elem);
 		}
 		else {
 			for (auto it = container.begin(); it != container.end(); ++it) {
-				if (it->getPrior() > elem.getPrior()) {
+				if ((*it)>elem){
 					container.insert(it, elem);
 				return;
 				}
 			}
 			container.push_back(elem);
+		}
+	}
+
+	void remove(Pair<T, unsigned int> elem) {
+		for (auto it = container.begin(); it != container.end(); ++it) {
+			if ((*it) == elem) {
+				container.erase(it);
+				return;
+			}
 		}
 	}
 

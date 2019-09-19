@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ListPriorQueue.h"
 #include "Pair.h"
+#include <list>
 
 int main()
 {
@@ -13,10 +14,14 @@ int main()
 	Pair<int, unsigned int> n = { 6,3 };
 	Pair<int, unsigned int> c = { 5,2 };
 	
-	a.enqueue(n);
-	a.enqueue(c);
-	a.enqueue(d);
-	a.enqueue(b);
+	a.add(n);
+	a.add(c);
+	a.add(d);
+	a.add(d);
+	a.add(b);
+	a.remove(d);
+	
+
 	a.out();
     std::cout << "Hello World!\n";
 }
