@@ -5,59 +5,37 @@
 
 template <class T>
 class List {
-
-public:
-
-
-/** Class Node expresses the node of the list with its characteristics and has various method
-*/
-	class Node {
-	private:
+	struct Node {
 		T value;
 		Node* next, * prev;
-	public:
+		
 		Node(T val, Node* pr = NULL, Node* ne = NULL) {
 			value = val;
-			next = ne;
 			prev = pr;
+			next = ne;
 		}
 
-		void add_next(T val) {
-			next = new Node(val, this);
+		void out() {
+			std::cout << value << std::endl;
 		}
 
-		Node* getNext(){
-			return next;
+		//FIX FOR INT???
+		Node* operator+ (unsigned int inc) {
+			//increments pointer in a correct way
+			Node* ans = this;
+			for (unsigned int i = 0; i < inc; i++) {
+				ans = ans->next;
+			}
+			return ans;
 		}
-
-		T getVal() {
-			return value;
-		}
-
 	};
-
-
-// Class List is the actual implementation of the list library
-private:
 	Node* head, * tail;
-
 public:
 	List() {
 		head = NULL;
 		tail = NULL;
 	}
-
-	void push_back(T val) {
-		if (head == NULL) {
-			head = new Node(val);
-			tail = head;
-		}
-		else {
-			tail->add_next(val);
-			tail = tail->getNext();
-		}
-	}
-
+	
 	Node* begin() {
 		return head;
 	}
@@ -66,17 +44,51 @@ public:
 		return tail;
 	}
 
+	bool empty() {
+		return (head) ? false : true;
+	}
+
 	void out() {
 		Node* temp = head;
-		while (head != tail) {
-			std::cout << temp->getVal() << " ";
-			temp = temp->getNext();
+		while (temp != tail) {
+			temp->out();
+			temp = temp->next;
+		}
+		tail->out();
+	}
+
+	void push_back(T val) {
+		if (!head) {
+			head = new Node(val);
+			tail = head;
+		}
+		else {
+			tail->next = new Node(val, tail);
+			tail = tail->next;
 		}
 	}
 
-	//void erase ()
+	void insert(Node* it, T to_insert) {
+		if (it) {
+			if (it->prev) {
+				it->prev->next = new Node(to_insert, it->prev, it);
+				it->prev = it->prev->next;
+			}
+			else {
+				Node* new_head = new Node(to_insert, NULL, it);
+				it->prev = new_head;
+				head = new_head;
+			}
+		}
+	}
+
+	void erase(Node* it) {
+
+	}
 
 };
+
+
 
 
 #endif // !LIST_H

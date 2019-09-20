@@ -28,9 +28,11 @@ int main()
 	List<int> a;
 	a.push_back(4);
 	a.push_back(6);
-	a.push_back(3);
+	a.insert((*a.begin())+1, 5);
+	//a.push_back(3);
 	a.out();
-
+	std::list<int> k;
+	auto f = k.begin();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
