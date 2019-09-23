@@ -28,7 +28,7 @@ int main()
 	List<int> a;
 	a.push_back(4);
 	a.push_back(6);
-	a.insert((*a.begin())+1, 5);
+	//a.insert((*a.begin())+1, 5);
 	//a.push_back(3);
 	a.out();
 	std::list<int> k;

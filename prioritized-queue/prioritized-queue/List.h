@@ -31,18 +31,29 @@ class List {
 	};
 	Node* head, * tail;
 public:
+
+	template <class U>
+	friend class List_iterator;
+
+	typedef List_iterator<T> iterator;
+	typedef List_iterator<const T> const_iterator;
+
+	iterator begin() {
+
+	}
+
 	List() {
 		head = NULL;
 		tail = NULL;
 	}
 	
-	Node* begin() {
-		return head;
-	}
+	//Node* begin() {
+	//	return head;
+	//}
 
-	Node* end() {
-		return tail;
-	}
+	//Node* end() {
+	//	return tail;
+	//}
 
 	bool empty() {
 		return (head) ? false : true;
@@ -86,10 +97,27 @@ public:
 
 	}
 
+	//void operator<<
+
 };
 
+template <class T>
+class List_iterator : std::iterator <std::random_access_iterator_tag, T, unsigned int, T*, T&> {
+	template<class U>
+	friend class List;
+	
+	T* pointer;
+	
+	List_iterator(T* ptr) {
+		pointer(ptr);
+	}
 
+public:
+	List_iterator(const List_iterator& it) {
+		pointer(it.pointer);
+	}
 
+};
 
 #endif // !LIST_H
 
