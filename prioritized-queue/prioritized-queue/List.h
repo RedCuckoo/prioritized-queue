@@ -12,8 +12,8 @@ class List {
 		
 		Node() {
 			type = 0;
-			next = NULL;
-			prev = NULL;
+			next = nullptr;
+			prev = nullptr;
 		}
 
 		Node(T val, Node* pr, Node* ne) {
@@ -57,7 +57,7 @@ public:
 
 	void push_back(T val) {
 		if (head == tail) {
-			head = new Node(val, NULL, tail);
+			head = new Node(val, nullptr, tail);
 			tail->prev = head;
 		}
 		else {
@@ -72,7 +72,7 @@ public:
 				it->prev = it->prev->next;
 			}
 			else {
-				Node* new_head = new Node(to_insert, NULL, it);
+				Node* new_head = new Node(to_insert, nullptr, it);
 				it->prev = new_head;
 				head = new_head;
 			}
@@ -129,7 +129,7 @@ class List_iterator {
 	typename List<T>::Node* node;
 
 public:
-	List_iterator() : list(NULL), node(NULL) {	}
+	List_iterator() : list(nullptr), node(nullptr) {	}
 	List_iterator(List<T>* l, typename List<T>::Node* n) : list(l), node(n) {	}
 
 	List_iterator(const List_iterator& to_copy) : list(to_copy.list), node(to_copy.node) {	}
@@ -201,10 +201,8 @@ public:
 	T* operator->() const{
 		return &(node->value);
 	}
+	
 
-
-	template <class C>
-	friend int operator-(const List_iterator<T>& to_subtr, const List_iterator<T>& subtr);
 
 	template <class U>
 	friend List_iterator<U> operator+ (int val, List_iterator<U> to_add);
@@ -223,12 +221,6 @@ List_iterator<T> operator+ (int val, List_iterator<T> to_add) {
 		}
 	}
 	return to_add;
-}
-
-template <class T>
-int operator- (const List_iterator<T>& to_subtr, const List_iterator<T>& subtr) {
-	//implement after comparison
-	return 0;
 }
 
 #endif // !LIST_H
