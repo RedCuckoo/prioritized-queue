@@ -6,6 +6,7 @@
 #include "Pair.h"
 #include <list>
 #include "List.h"
+#include <type_traits>
 
 int main()
 {
@@ -24,15 +25,40 @@ int main()
 	//
 
 	//a.out();
-
+	//std::_List_const_iterator<int> k;
 	List<int> a;
-	a.push_back(4);
+	List<int> b;
+	a.push_back(-4);
 	a.push_back(6);
-	//a.insert((*a.begin())+1, 5);
-	//a.push_back(3);
-	a.out();
-	std::list<int> k;
-	auto f = k.begin();
+	a.push_back(5);
+	//a.insert(*++a.begin(), 5);
+	a.push_back(3);
+	std::cout <<*(2+a.begin());
+	//a.out();
+	auto k = a.begin(), l = k;
+	std::cout << (k == l) ? 1 : 0;
+	std::cout << (++k == ++l) ? 1 : 0;
+	
+	
+	//for (auto f = a.end(); f != a.begin(); --f) {
+	//	std::cout << *f << std::endl;
+	//}
+
+	std::cout << "%%%%%%%%%%%%%%%%%%%%%\n";
+	*(a.begin()++) = 9;
+	////std::cout << *++a.begin() <<std::endl;
+	//a.out();
+
+	//std::list<int> k;
+	//k.push_back(5);
+	//k.push_back(3);
+	////k.push_back(8);
+	//*k.begin()++ = 9;
+	//std::cout << *(k.begin());
+	//for (auto f = k.begin(); f != k.end(); ++f) {
+	//	std::cout << *f << std::endl;
+	//}
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
