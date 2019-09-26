@@ -9,37 +9,57 @@
 template <class T>
 class ListPriorQueue {
 private:
-	//std::list<Pair<T, unsigned int>>container;
 	List<Pair<int, unsigned int>>container;
 public:
-	void add(Pair<T, unsigned int> elem){
-		//if (container.empty()) {
-		//	container.push_back(elem);
-		//}
-		//else {
-		//	//for (auto it = container.begin(); it != container.end(); it = it->getNext()) {
-		//	//	if ((*it)>elem){
-		//	//		container.insert(it, elem);
-		//	//	return;
-		//	//	}
-		//	//}
-		//	container.push_back(elem);
-		//}
+	void push(Pair<T, unsigned int> elem){
+		if (container.empty()) {
+			container.push_back(elem);
+		}
+		else {
+			for (auto it = container.begin(); it != container.end(); ++it) {
+				if ((*it)>elem){
+					container.insert(it, elem);
+					return;
+				}
+			}
+			container.push_back(elem);
+		}                                                                                                     
 	}
 
-	void remove(Pair<T, unsigned int> elem) {
-		//for (auto it = container.begin(); it != container.end(); ++it) {
-		//	if ((*it) == elem) {
-		//		container.erase(it);
-		//		return;
-		//	}
-		//}
+	bool empty() {
+		return (container.empty()) ? true : false;
 	}
 
+	void pop() {
+		container.erase(--container.end());
+	}
 
+	Pair<T, unsigned int>& front() {
+		return *--container.end();
+	}
+
+	Pair<T, unsigned int>& back() {
+		return *container.begin();
+	}
+
+	unsigned int size() {
+		return container.size();
+	}
+
+/*	void remove(Pair<T, unsigned int> elem) {
+		for (auto it = container.begin(); it != container.end(); ++it) {
+			if ((*it) == elem) {
+				container.erase(it);
+				return;
+			}
+		}
+	}
+*/
 
 	void out() {
-
+		for (auto f = container.begin(); f != container.end(); ++f) {
+			(*f).out();
+		}
 	}
 };
 

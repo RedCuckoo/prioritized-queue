@@ -10,64 +10,35 @@
 
 int main()
 {
-	//ListPriorQueue <int> a;
-	//Pair<int, unsigned int> d = { 7,4 };
-	//Pair<int, unsigned int> b = { 4,3 };
-	//Pair<int, unsigned int> n = { 6,3 };
-	//Pair<int, unsigned int> c = { 5,2 };
-	//
-	//a.add(n);
-	//a.add(c);
-	//a.add(d);
-	//a.add(d);
-	//a.add(b);
-	//a.remove(d);
-	//
-
-	//a.out();
-	//std::_List_const_iterator<int> k;
-	List<int> a;
-	List<int> b;
-	a.push_back(-4);
-	a.push_back(6);
-	a.push_back(5);
-	//a.insert(*++a.begin(), 5);
-	a.push_back(3);
-	std::cout <<*(2+a.begin());
-	//a.out();
-	auto k = a.begin(), l = k;
-	std::cout << (k == l) ? 1 : 0;
-	std::cout << (++k == ++l) ? 1 : 0;
+	ListPriorQueue <int> a;
+	Pair<int, unsigned int> d = { 7,4 };
+	Pair<int, unsigned int> b = { 4,3 };
+	Pair<int, unsigned int> n = { 6,3 };
+	Pair<int, unsigned int> c = { 5,2 };
 	
-	
-	//for (auto f = a.end(); f != a.begin(); --f) {
-	//	std::cout << *f << std::endl;
-	//}
+	a.push(n);
+	a.push(c);
+	a.push(d);
+	a.push(d);
+	a.push(b);
 
-	std::cout << "%%%%%%%%%%%%%%%%%%%%%\n";
-	*(a.begin()++) = 9;
-	////std::cout << *++a.begin() <<std::endl;
+
+	std::cout << a.size();
 	//a.out();
+	std::cout << "\n";
+	a.front().out();
+	std::cout << "\n";
 
-	//std::list<int> k;
-	//k.push_back(5);
-	//k.push_back(3);
-	////k.push_back(8);
-	//*k.begin()++ = 9;
-	//std::cout << *(k.begin());
-	//for (auto f = k.begin(); f != k.end(); ++f) {
-	//	std::cout << *f << std::endl;
-	//}
 
-}
+} 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
 // Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
+//   1. Use the Solution Explorer window to push/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
 //   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   5. Go to Project > push New Item to create new code files, or Project > push Existing Item to push existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

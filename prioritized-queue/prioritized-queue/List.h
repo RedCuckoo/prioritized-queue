@@ -37,23 +37,39 @@ class List {
 	};
 	Node* head, * tail;
 public:
+	template <class U>
+	friend class List_iterator;
+
+	//--------iterator-----------
+
+	List_iterator<T> begin() {
+		return List_iterator<T>(this, head);
+	}
+
+	List_iterator<T> end() {
+		return List_iterator<T>(this, tail);
+	}
+
+	//-----------List-----------
+
 	List() {
 		head = new Node();
 		tail = head;
 	}
 
 	bool empty() {
-		return (head == tail) ? false : true;
+		return (head == tail) ? true : false;
 	}
 
-	//void out() {
-	//	Node* temp = head;
-	//	while (temp != tail) {
-	//		temp->out();
-	//		temp = temp->next;
-	//	}
-	//	tail->out();
-	//}
+	unsigned int size() {
+		Node* temp = head;
+		unsigned int size = 0;
+		while (temp != tail) {
+			size++;
+			temp = temp->next;
+		}
+		return size;
+	}
 
 	void push_back(T val) {
 		if (head == tail) {
@@ -64,23 +80,36 @@ public:
 			tail->prev =tail->prev->next = new Node(val, tail->prev, tail);
 		}
 	}
-/*
-	void insert(Node* it, T to_insert) {
-		if (it) {
-			if (it->prev) {
-				it->prev->next = new Node(to_insert, it->prev, it);
-				it->prev = it->prev->next;
-			}
-			else {
-				Node* new_head = new Node(to_insert, nullptr, it);
-				it->prev = new_head;
-				head = new_head;
-			}
+
+	void insert(const List_iterator<T>& it, const T& to_insert) {
+		if (it == begin()) {
+			it->prev = new Node(to_insert, nullptr, head);
+			head = head->prev;
 		}
-	}*/
+		else {
+			Node* temp = it->prev;
+			it->prev = new Node(to_insert, it->prev, it.node);
+			temp->next = it->prev;
+		}
 
-	void erase(Node* it) {
+	}
+	
+//EXCEPTIONS
 
+	List_iterator<T> erase(List_iterator<T> it) {
+		//throw exception if end()
+		Node* temp = it.node;
+		if (it == begin()) {
+			head = head->next;
+			it = begin();
+		}
+		else {
+			it = List_iterator<T>(this, temp->next);
+			temp->prev->next = temp->next;
+			temp->next->prev = temp->prev;
+		}
+		delete temp;
+		return it;
 	}
 
 	bool operator==(List& to_compare) {
@@ -104,19 +133,6 @@ public:
 		return (*this == to_compare) ? false : true;
 	}
 
-	template <class U>
-	friend class List_iterator;
-
-	typedef List_iterator<T> iterator;
-	typedef List_iterator<const T> const_iterator;
-
-	iterator begin() {
-		return iterator(this, head);
-	}
-
-	iterator end() {
-		return iterator(this, tail);
-	}
 };
 
 template <class T>
@@ -198,18 +214,49 @@ public:
 		return node->value;
 	}
 
-	T* operator->() const{
-		return &(node->value);
-	}
-	
+/*
+	bool operator<= (const List_iterator& to_compare) const {
+		typename List<T>::Node temp = list->head;
+		while (temp != this->node || temp != to_compar.node) {
+			temp = temp->next;
+		}
 
+		return (temp == this->node) ? true : false;
+	}
+
+	bool operator< (const List_iterator& to_compare) const {
+		return (*this <= to_compare && *this != to_compare) ? true : false;
+	}	
+
+	bool operator>= (const List_iterator& to_compare) const {
+		typename List<T>::Node temp = list->head;
+		while (temp != this->node || temp != to_compare.node) {
+			temp = temp->next;
+		}
+
+		return (temp == to_compare.node) ? true : false;
+	}
+
+	bool operator> (const List_iterator& to_compare) const {
+		return (*this >= to_compare && *this != to_compare) ? true : false;
+	}
+*/
 
 	template <class U>
 	friend List_iterator<U> operator+ (int val, List_iterator<U> to_add);
+
+private:
+	typename List<T>::Node* operator->() const{
+		return node;
+	}
+	
+
 };
 
 template <class T>
 List_iterator<T> operator+ (int val, List_iterator<T> to_add) {
+	/**to_add is a parameter without reference because we need to create a local variable either or
+	so in this case we use already copied parameter*/
 	if (val >= 0) {
 		for (int i = 0; i < val; ++i) {
 			to_add.node = to_add.node->next;

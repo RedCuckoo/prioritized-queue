@@ -9,6 +9,8 @@ private:
 	S value;
 	T priority;
 public:
+	Pair() = default;
+
 	Pair(S val, T prior){
 		value = val;
 		priority = prior;
