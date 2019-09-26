@@ -157,6 +157,8 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="ListPriorQueue.h" />
     <ClInclude Include="Pair.h" />
+    <ClInclude Include="QueueBase.h" />
+    <ClInclude Include="VectorPriorQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

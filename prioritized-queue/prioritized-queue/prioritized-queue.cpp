@@ -6,29 +6,30 @@
 #include "Pair.h"
 #include <list>
 #include "List.h"
-#include <type_traits>
+#include "VectorPriorQueue.h"
 
 int main()
 {
+	//VectorPriorQueue <int> a;
 	ListPriorQueue <int> a;
 	Pair<int, unsigned int> d = { 7,4 };
 	Pair<int, unsigned int> b = { 4,3 };
 	Pair<int, unsigned int> n = { 6,3 };
 	Pair<int, unsigned int> c = { 5,2 };
-	
+
+
 	a.push(n);
 	a.push(c);
 	a.push(d);
 	a.push(d);
 	a.push(b);
+	a.pop();
 
 
-	std::cout << a.size();
-	//a.out();
+	a.out();
 	std::cout << "\n";
 	a.front().out();
-	std::cout << "\n";
-
+	a.back().out();
 
 } 
 
