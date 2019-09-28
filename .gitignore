@@ -401,3 +401,8 @@ latex/
 /man
 /docbook
 /perlmod
+
+#Visual Studio
+
+*.vcxproj
+*.vcxproj.filters
