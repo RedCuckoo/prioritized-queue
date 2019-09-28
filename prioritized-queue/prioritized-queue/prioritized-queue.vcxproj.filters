@@ -35,5 +35,11 @@
     <ClInclude Include="QueueBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TreePriorQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

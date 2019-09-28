@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+//TODO: overload operator<<
 template<class S, class T>
 class Pair {
 private:

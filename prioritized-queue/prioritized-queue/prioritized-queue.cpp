@@ -7,29 +7,38 @@
 #include <list>
 #include "List.h"
 #include "VectorPriorQueue.h"
+#include "AVLTree.h"
 
 int main()
 {
 	//VectorPriorQueue <int> a;
-	ListPriorQueue <int> a;
+	//ListPriorQueue <int> a;
+	//PriorQueue <int> a;
+	//AVLTree<Pair<int, unsigned int>> a;
+	AVLTree<int> a;
 	Pair<int, unsigned int> d = { 7,4 };
 	Pair<int, unsigned int> b = { 4,3 };
 	Pair<int, unsigned int> n = { 6,3 };
 	Pair<int, unsigned int> c = { 5,2 };
 
-
-	a.push(n);
-	a.push(c);
-	a.push(d);
-	a.push(d);
-	a.push(b);
-	a.pop();
-
-
+	a.push_back(3);
+	a.push_back(5);
+	a.push_back(7);
+	a.push_back(2);
 	a.out();
-	std::cout << "\n";
-	a.front().out();
-	a.back().out();
+
+	//a.push(n);
+	//a.push(c);
+	//a.push(d);
+	//a.push(d);
+	//a.push(b);
+	//a.pop();
+
+
+	//a.out();
+	//std::cout << "\n";
+	//a.front().out();
+	//a.back().out();
 
 } 
 
