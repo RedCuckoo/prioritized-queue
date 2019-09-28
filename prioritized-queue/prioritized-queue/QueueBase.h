@@ -3,8 +3,25 @@
 
 #include "Pair.h"
 
+//TODO: remove Pair from QueueBase definition and think out about more parameters
 template <class S, class T>
 class QueueBase {
+	/*
+		key functions for the class S which is a container:
+			void push_back();
+			bool empty();
+			iterator begin();
+			iterator end();
+			iterator insert();
+			iterator erase();
+			unsigned int size();
+			
+		and for iterators:
+			iterator operator--();
+			Pair<T, unsigned int> operator*();
+		
+		IF NOT: override functions with missed methods
+	*/
 private:
 	S container;
 public:
