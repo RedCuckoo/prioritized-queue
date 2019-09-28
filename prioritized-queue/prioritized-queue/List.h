@@ -63,7 +63,7 @@ private:
 		}
 
 		/*!
-		Overloaded equality operator.
+		Overloaded equality operator
 		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
 		\return True value if they are equal and false value otherwise
 		*/
@@ -72,7 +72,7 @@ private:
 		}
 		
 		/*!
-		Overloaded inequality operator.
+		Overloaded inequality operator
 		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
 		\return True value if they are unequal and false value otherwise
 		*/
@@ -81,12 +81,16 @@ private:
 		}
 
 	};
+
 	Node* head, * tail;
-public:
-	//TODO: check how to write documentation for the friend declaration
+
+	/*!
+	Friended class List_iterator to give it access to private fields of class List
+	*/
 	template <class U>
 	friend class List_iterator;
 
+public:
 	//--------iterator-----------
 	/*!
 	Method that returns the iterator to the beginning of the list
@@ -220,7 +224,7 @@ public:
 	}
 
 	/*!
-	Overloaded equality operator.
+	Overloaded equality operator
 	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
 	\return True value if they are equal and false value otherwise
 	*/
@@ -242,7 +246,7 @@ public:
 	}
 
 	/*!
-	Overloaded inequality operator.
+	Overloaded inequality operator
 	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
 	\return True value if they are unequal and false value otherwise
 	*/
@@ -253,17 +257,19 @@ public:
 };
 
 /*!
-A custom written class which emplements iterators for the class List.
+A custom written class which implements iterators for the class List
 It has the same properties as STL library std::random_access_iterator
 */
 template <class T>
 class List_iterator {
+	/*!
+	Friended class List_iterator to give it access to private fields of class List 
+	*/
 	template<class U>
 	friend class List;
 
 	List<T>* list;
 	typename List<T>::Node* node;
-
 public:
 	/*!
 	A default constuctor which creates an empty iterator with fields that are pointing to the null value
@@ -277,35 +283,62 @@ public:
 	*/
 	List_iterator(List<T>* list_ptr, typename List<T>::Node* node_ptr) : list(list_ptr), node(node_ptr) {	}
 
+	/*!
+	Overloaded copy constructor to make sure that it works as supposed to
+	*/
 	List_iterator(const List_iterator& to_copy) : list(to_copy.list), node(to_copy.node) {	}
 
+	/*!
+	Overloaded left increment operator
+	\return A reference to the iterator, pointing to the next element
+	*/
 	List_iterator& operator++() {
 		node = node->next;
 		return *this;
 	}
 
+	/*!
+	Overloaded right increment operator
+	\return An iterator, pointing to the next element
+	*/
 	List_iterator operator++(int) {
 		List_iterator result = *this;
 		node = node->next;
 		return result;
 	}
 
+	/*!
+	Overloaded left decrement operator
+	\return A reference to the iterator, pointing to the previous element
+	*/
 	List_iterator& operator--() {
 		node = node->prev;
 		return *this;
 	}
 
+	/*!
+	Overloaded right decrement operator
+	\return A reference to the iterator, pointing to the previous
+	*/
 	List_iterator operator--(int) {
 		List_iterator result = *this;
 		node = node->prev;
 		return result;
 	}
 
+	/*!
+	Overloaded summing operator, shifts iterator to the left or right relatively of the parameter
+	\param val If this parameter is >0 then it iterator shifts to the right, else - to the left
+	\return A reference to the iterator, pointing to the next or previous element
+	*/
 	List_iterator& operator+(int val) {
-		if (val >= 0) {
+		if (val > 0) {
 			for (unsigned int i = 0; i < val; ++i) {
 				node = node->next;
 			}
+		}
+		else if (val == 0) {
+			
 		}
 		else {
 			for (unsigned int i = 0; i < -val; ++i) {
@@ -315,11 +348,19 @@ public:
 		return *this;
 	}
 	
+	/*!
+	Overloaded suntracting operator, shifts iterator to the left or right relatively of the parameter
+	\param val If this parameter is >0 then it iterator shifts to the left, else - to the right
+	\return A reference to the iterator, pointing to the next or previous element
+	*/
 	List_iterator& operator-(int val) {
-		if (val >= 0) {
+		if (val > 0) {
 			for (unsigned int i = 0; i < val; ++i) {
 				node = node->prev;
 			}
+		}
+		else if (val == 0) {
+
 		}
 		else {
 			for (unsigned int i = 0; i < -val; ++i) {
@@ -329,16 +370,28 @@ public:
 		return *this;
 	}
 
-	
-
+	/*!
+	Overloaded equality operator
+	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
+	\return True value if they are equal and false value otherwise
+	*/
 	bool operator== (const List_iterator& to_compare) const {
 		return (list == to_compare.list && node == to_compare.node);
 	}	
 	
+	/*!
+	Overloaded inequality operator
+	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
+	\return True value if they are unequal and false value otherwise
+	*/
 	bool operator!= (const List_iterator& to_compare) const {
 		return (list != to_compare.list || node != to_compare.node);
 	}
 
+	/*!
+	Overloaded dereference operator
+	\return A value (of the type T) that is stored in the node of the list that current iterator is pointing to
+	*/
 	T& operator*() const{
 		return node->value;
 	}
@@ -371,22 +424,35 @@ public:
 	}
 */
 
-	template <class U>
-	friend List_iterator<U> operator+ (int val, List_iterator<U> to_add);
+
 
 private:
+	/*!
+	Overloaded arrow dereference operator
+	It is private, for convinient implementations of methods only
+	\return A gives access to the elelments of the node, to which current iterator is pointing to
+	*/
 	typename List<T>::Node* operator->() const{
 		return node;
 	}
-	
 
+	/*!
+	Friended function which overloads operation of adding integer value and List_iterator object
+	As the result, it will shift iterator left or right (depending on the passed parameter
+	*/
+	template <class U>
+	friend List_iterator<U> operator+ (int val, List_iterator<U> to_add);
 };
 
+/*!
+Shifts iterator left or right regardles of the parameter
+\param val If val > 0, then passed List_iterator<T> to_add will be shifted to the right val positions
+Otherwise - to the left
+\param to_add This parameter is passed not via reference, because it is changed in the function
+\return Copy of shifted to_add iterator
+*/
 template <class T>
 List_iterator<T> operator+ (int val, List_iterator<T> to_add) {
-	/*!
-	\param[in] to_add is a parameter without reference because we need to create a local variable either or
-	so in this case we use already copied parameter*/
 	if (val >= 0) {
 		for (int i = 0; i < val; ++i) {
 			to_add.node = to_add.node->next;
