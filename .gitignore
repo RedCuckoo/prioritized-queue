@@ -394,8 +394,8 @@ ASALocalRun/
 /doxygen.tag
 
 /examples/*/html
-/html
-/latex
+html/
+latex/
 /rtf
 /xml
 /man
