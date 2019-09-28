@@ -22,10 +22,15 @@ private:
 	S value;
 	T priority;
 public:
-
-	//Pair() = default;
 	/*!
-	A constructor to create a pair for the queue with priority
+	\brief Constructor
+	\details Allowing a default constructor access
+	*/
+	Pair() = default;
+	
+	/*!
+	\brief Constructor
+	\details A constructor to create a pair for the queue with priority
 	\param[in] val The value which queue stores
 	\param[in] prior The priority which provided value has
 	*/
@@ -51,7 +56,7 @@ public:
 	}
 
 	/*!
-	Overloaded "is bigger than" operator
+	\brief Overloaded "is bigger than" operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if current Pair is bigger than to_compare and false value otherwise
 	*/
@@ -60,7 +65,7 @@ public:
 	}	
 	
 	/*!
-	Overloaded "is bigger or equal than" operator
+	\brief Overloaded "is bigger or equal than" operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if current Pair is bigger or equal than to_compare and false value otherwise
 	*/
@@ -69,7 +74,7 @@ public:
 	}	
 	
 	/*!
-	Overloaded "is less than" operator
+	\brief Overloaded "is less than" operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if current Pair is less than to_compare and false value otherwise
 	*/
@@ -78,7 +83,7 @@ public:
 	}	
 	
 	/*!
-	Overloaded "is less or equal than" operator
+	\brief Overloaded "is less or equal than" operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if current Pair is less or equal than to_compare and false value otherwise
 	*/
@@ -87,7 +92,7 @@ public:
 	}
 
 	/*!
-	Overloaded equality operator
+	\brief Overloaded equality operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if they are equal and false value otherwise
 	*/
@@ -96,7 +101,7 @@ public:
 	}	
 	
 	/*!
-	Overloaded inequality operator
+	\brief Overloaded inequality operator
 	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
 	\return True value if they are unequal and false value otherwise
 	*/
@@ -105,7 +110,8 @@ public:
 	}
 
 	/*!
-	Print stored fields of the Pair to the console, using <iostream> library
+	\brief Output stored information
+	\details Print stored fields of the Pair to the console, using <iostream> library
 	*/
 	void out() {
 		std::cout << value << " " << priority << std::endl;

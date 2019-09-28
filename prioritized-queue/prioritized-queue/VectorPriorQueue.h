@@ -7,7 +7,7 @@
 #include "QueueBase.h"
 
 template <class T>
-class VectorPriorQueue : public QueueBase<std::vector<Pair<T, unsigned int>>, T> {
+class VectorPriorQueue : private QueueBase<std::vector<Pair<T, unsigned int>>, Pair<T, unsigned int>> {
 
 };
 

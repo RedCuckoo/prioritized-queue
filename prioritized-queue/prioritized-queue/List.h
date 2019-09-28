@@ -10,7 +10,6 @@
 
 #include <iostream>
 //TODO: refactor
-//TODO: documentation
 
 /*!
 	\brief Double linked list
@@ -34,7 +33,8 @@ private:
 		bool type = 1;
 		
 		/*!
-		Constructor which creates an empty node, which is used as the end of the list (iterator on the end of the list)
+		\brief Constructor
+		\details Constructor which creates an empty node, which is used as the end of the list (iterator on the end of the list)
 		*/
 		Node() {
 			type = 0;
@@ -43,7 +43,8 @@ private:
 		}
 
 		/*!
-		Constructor which creates a node from the provided parameters.
+		\brief Constructor
+		\details Constructor which creates a node from the provided parameters.
 		\param[in] val The value that node will store
 		\param[in] pr Pointer to the previous node (for the beginning of the list, nullptr is passed)
 		\param[in] ne Pointer to the next node (for the end of the list, pointer to an empty node is passed)
@@ -56,14 +57,15 @@ private:
 
 		//TODO: add value.out() support somehow
 		/*!
-		Print stored value of the node to the console, using <iostream> library
+		\brief Output stored information
+		\details Print stored value of the node to the console, using <iostream> library
 		*/
 		void out() {
 			std::cout << value << std::endl;
 		}
 
 		/*!
-		Overloaded equality operator
+		\brief Overloaded equality operator
 		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
 		\return True value if they are equal and false value otherwise
 		*/
@@ -72,7 +74,7 @@ private:
 		}
 		
 		/*!
-		Overloaded inequality operator
+		\brief Overloaded inequality operator
 		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
 		\return True value if they are unequal and false value otherwise
 		*/
@@ -85,7 +87,8 @@ private:
 	Node* head, * tail;
 
 	/*!
-	Friended class List_iterator to give it access to private fields of class List
+	\brief Friended class List_iterator
+	\details Gives access to private fields of class List
 	*/
 	template <class U>
 	friend class List_iterator;
@@ -93,7 +96,8 @@ private:
 public:
 	//--------iterator-----------
 	/*!
-	Method that returns the iterator to the beginning of the list
+	\brief Get iterator on the beginning
+	\details Method that returns the iterator to the beginning of the list
 	\return Iterator to the beginning of the list
 	*/
 	List_iterator<T> begin() {
@@ -101,7 +105,8 @@ public:
 	}
 
 	/*!
-	Method that returns the iterator to the end of the list
+	\brief Get iterator on the end
+	\details Method that returns the iterator to the end of the list
 	\return Iterator to the end of the list
 	*/
 	List_iterator<T> end() {
@@ -110,7 +115,8 @@ public:
 
 	//-----------List-----------
 	/*!
-	Default construct which creates a List object with no elements in it
+	\brief Constructor
+	\details Default construct which creates a List object with no elements in it
 	*/
 	List() {
 		head = new Node();
@@ -118,7 +124,8 @@ public:
 	}
 
 	/*!
-	This method checks whether or not current list is empty
+	\brief Checks emptiness of the list
+	\details This method checks whether or not current list is empty
 	\return True value if the list is empty and false value otherwise
 	*/
 	bool empty() {
@@ -126,7 +133,8 @@ public:
 	}
 
 	/*!
-	To get the amount of elements of the list
+	\brief Get the size of the list
+	\details To get the amount of elements of the list
 	\return Size of the list
 	*/
 	unsigned int size() {
@@ -140,7 +148,8 @@ public:
 	}
 
 	/*!
-	Add elements to the end of the list
+	\brief Add elements
+	\details Add elements to the end of the list
 	\param[in] val Value which has to be added to the list
 	*/
 	void push_back(T val) {
@@ -154,7 +163,8 @@ public:
 	}
 
 	/*!
-	Insert elements in the iterated position in the list
+	\brief Insert elelment
+	\details Insert an element in the iterated position in the list
 	\param[in] it Iterator to the position where the element has to be inserted 
 	\param[in] to_insert Reference to the element which has to be inserted
 	The value is interted on the left of the iterator.
@@ -188,7 +198,8 @@ public:
 	
 	//TODO: implement exceptions?
 	/*!
-	Erases element on the iterated position in the list
+	\brief Erase element
+	\details Erases element on the iterated position in the list
 	\param[in] it Iterator to the position where the element has to be erased
 	The value is erased, making the iterator invalid.
 	\code
@@ -224,7 +235,7 @@ public:
 	}
 
 	/*!
-	Overloaded equality operator
+	\brief Overloaded equality operator
 	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
 	\return True value if they are equal and false value otherwise
 	*/
@@ -246,7 +257,7 @@ public:
 	}
 
 	/*!
-	Overloaded inequality operator
+	\brief Overloaded inequality operator
 	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
 	\return True value if they are unequal and false value otherwise
 	*/
@@ -257,13 +268,15 @@ public:
 };
 
 /*!
-A custom written class which implements iterators for the class List
+\brief iterator 
+\details A custom written class which implements iterators for the class List
 It has the same properties as STL library std::random_access_iterator
 */
 template <class T>
 class List_iterator {
 	/*!
-	Friended class List_iterator to give it access to private fields of class List 
+	\brief Friended class List
+	\details Gives access to private fields of class List
 	*/
 	template<class U>
 	friend class List;
@@ -272,24 +285,27 @@ class List_iterator {
 	typename List<T>::Node* node;
 public:
 	/*!
-	A default constuctor which creates an empty iterator with fields that are pointing to the null value
+	\brief Constructor
+	\default A default constuctor which creates an empty iterator with fields that are pointing to the null value
 	*/
 	List_iterator() : list(nullptr), node(nullptr) {	}
 
 	/*!
-	A constructor that creates iterator from the provided parameters
+	\brief Constructor
+	\details A constructor that creates iterator from the provided parameters
 	\param[in] list_ptr Pointer to the list, where current iterator belongs to
 	\param[in] node_ptr Pointer to the node, where current iterator has to point
 	*/
 	List_iterator(List<T>* list_ptr, typename List<T>::Node* node_ptr) : list(list_ptr), node(node_ptr) {	}
 
 	/*!
-	Overloaded copy constructor to make sure that it works as supposed to
+	\brief Copy constructor
+	\details Overloaded copy constructor to make sure that it works as supposed to
 	*/
 	List_iterator(const List_iterator& to_copy) : list(to_copy.list), node(to_copy.node) {	}
 
 	/*!
-	Overloaded left increment operator
+	\brief Overloaded left increment operator
 	\return A reference to the iterator, pointing to the next element
 	*/
 	List_iterator& operator++() {
@@ -298,7 +314,7 @@ public:
 	}
 
 	/*!
-	Overloaded right increment operator
+	\brief Overloaded right increment operator
 	\return An iterator, pointing to the next element
 	*/
 	List_iterator operator++(int) {
@@ -308,7 +324,7 @@ public:
 	}
 
 	/*!
-	Overloaded left decrement operator
+	\brief Overloaded left decrement operator
 	\return A reference to the iterator, pointing to the previous element
 	*/
 	List_iterator& operator--() {
@@ -317,7 +333,7 @@ public:
 	}
 
 	/*!
-	Overloaded right decrement operator
+	\brief Overloaded right decrement operator
 	\return A reference to the iterator, pointing to the previous
 	*/
 	List_iterator operator--(int) {
@@ -327,7 +343,7 @@ public:
 	}
 
 	/*!
-	Overloaded summing operator, shifts iterator to the left or right relatively of the parameter
+	\brief Overloaded summing operator, shifts iterator to the left or right relatively of the parameter
 	\param val If this parameter is >0 then it iterator shifts to the right, else - to the left
 	\return A reference to the iterator, pointing to the next or previous element
 	*/
@@ -349,7 +365,7 @@ public:
 	}
 	
 	/*!
-	Overloaded suntracting operator, shifts iterator to the left or right relatively of the parameter
+	\brief Overloaded suntracting operator, shifts iterator to the left or right relatively of the parameter
 	\param val If this parameter is >0 then it iterator shifts to the left, else - to the right
 	\return A reference to the iterator, pointing to the next or previous element
 	*/
@@ -371,7 +387,7 @@ public:
 	}
 
 	/*!
-	Overloaded equality operator
+	\brief Overloaded equality operator
 	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
 	\return True value if they are equal and false value otherwise
 	*/
@@ -380,7 +396,7 @@ public:
 	}	
 	
 	/*!
-	Overloaded inequality operator
+	\brief Overloaded inequality operator
 	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
 	\return True value if they are unequal and false value otherwise
 	*/
@@ -389,7 +405,7 @@ public:
 	}
 
 	/*!
-	Overloaded dereference operator
+	\brief Overloaded dereference operator
 	\return A value (of the type T) that is stored in the node of the list that current iterator is pointing to
 	*/
 	T& operator*() const{
@@ -428,8 +444,8 @@ public:
 
 private:
 	/*!
-	Overloaded arrow dereference operator
-	It is private, for convinient implementations of methods only
+	\brief Overloaded arrow dereference operator
+	\details It is private, for convinient implementations of methods only
 	\return A gives access to the elelments of the node, to which current iterator is pointing to
 	*/
 	typename List<T>::Node* operator->() const{
@@ -437,7 +453,8 @@ private:
 	}
 
 	/*!
-	Friended function which overloads operation of adding integer value and List_iterator object
+	\brief Overloaded left adding to the List_iterator
+	\details Friended function which overloads operation of adding integer value and List_iterator object
 	As the result, it will shift iterator left or right (depending on the passed parameter
 	*/
 	template <class U>
@@ -445,7 +462,8 @@ private:
 };
 
 /*!
-Shifts iterator left or right regardles of the parameter
+\brief Overloaded left adding to the List_iterator
+\details Shifts iterator left or right regardles of the parameter
 \param val If val > 0, then passed List_iterator<T> to_add will be shifted to the right val positions
 Otherwise - to the left
 \param to_add This parameter is passed not via reference, because it is changed in the function

@@ -7,7 +7,7 @@
 #include "QueueBase.h"
 
 template <class T>
-class ListPriorQueue : public QueueBase<List<Pair<T, unsigned int>>, T> {
+class ListPriorQueue : public QueueBase<List<Pair<T, unsigned int>>, Pair<T, unsigned int>> {
 
 };
 
