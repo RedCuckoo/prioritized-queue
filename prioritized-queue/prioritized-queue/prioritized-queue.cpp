@@ -12,23 +12,32 @@
 int main()
 {
 	//VectorPriorQueue <int> a;
-	ListPriorQueue <int> a;
+	//ListPriorQueue <int> a;
 	//PriorQueue <int> a;
 	//AVLTree<Pair<int, unsigned int>> a;
-	//AVLTree<int> a;
+	AVLTree<int> a;
 	Pair<int, unsigned int> d = { 7,4 };
 	Pair<int, unsigned int> b = { 4,3 };
 	Pair<int, unsigned int> n = { 6,3 };
 	Pair<int, unsigned int> c = { 5,2 };
 
-	//a.push_back(3);
-	//a.push_back(5);
-	//a.push_back(7);
-	//a.push_back(2);
-	a.push(d);
-	a.push(n);
-	a.push(c);
-	a.push(c);
+	a.push(3);
+	a.out();
+	std::cout << '\n';
+	a.push(5);
+	a.out();
+	std::cout << '\n';
+	a.push(7);
+	a.out();
+	std::cout << '\n';
+	a.push(2);
+	a.out();
+	std::cout << '\n';
+	a.push(9);
+	//a.push(d);
+	//a.push(n);
+	//a.push(c);
+	//a.push(c);
 	a.out();
 
 	//a.push(n);
