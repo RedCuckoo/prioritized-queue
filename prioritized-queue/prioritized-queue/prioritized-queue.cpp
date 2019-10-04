@@ -20,23 +20,30 @@ int main()
 	Pair<int, unsigned int> b = { 4,3 };
 	Pair<int, unsigned int> n = { 6,3 };
 	Pair<int, unsigned int> c = { 5,2 };
+	//a.push(3);
+	//a.push(7);
+	//a.push(8);
+	//a.push(9);
+	//a.push(10);
 
-	a.push(3);
-	a.out();
-	std::cout << '\n';
-	a.push(5);
-	a.out();
-	std::cout << '\n';
-	a.push(7);
-	a.out();
-	std::cout << '\n';
+	//for (size_t i = 0; i < 5; ++i) {
+	//	a.push(i);
+	//	a.out();
+	//	std::cout << std::endl;
+	//}
+	//a.out();
+	a.push(1);
 	a.push(2);
-	a.out();
-	std::cout << '\n';
-	a.push(9);
+	a.push(3);
+	a.push(4);
+	a.push(5);
+	a.push(6);
+	//a.out(); std::cout << std::endl;
+	//a.push(5);
 	//a.push(d);
 	//a.push(n);
 	//a.push(c);
+	//a.push(b);
 	//a.push(c);
 	a.out();
 
@@ -53,7 +60,7 @@ int main()
 	//a.front().out();
 	//a.back().out();
 
-} 
+	} 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

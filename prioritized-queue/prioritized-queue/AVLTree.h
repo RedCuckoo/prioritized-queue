@@ -12,13 +12,13 @@ class AVLTree {
 		Node* left = nullptr, * right = nullptr;
 		Node() = default;
 		Node(const T& val, unsigned int h = 1, Node* l = nullptr, Node* r = nullptr) : value(val), height(h), left(l), right(r) {	}
-		Node& operator= (const Node& to_assign) {
-			value = to_assign.value;
-			height = to_assign.height;
-			left = to_assign.left;
-			right = to_assign.right;
-			return *this;
-		}
+		//Node& operator= (const Node& to_assign) {
+		//	value = to_assign.value;
+		//	height = to_assign.height;
+		//	left = to_assign.left;
+		//	right = to_assign.right;
+		//	return *this;
+		//}
 		void out() {
 			std::cout << value << "(" << height << ") : ";
 			if (left)
@@ -77,6 +77,9 @@ class AVLTree {
 			h1 = to_check->left->height;
 		if (to_check->right)
 			h2 = to_check->right->height;
+
+		//UPDATING HEGIHT HERE
+		to_check->height = 1 + maxHeight(to_check->left, to_check->right);
 		//ans is stored in h1
 		h1 -= h2;
 		return (h1 < -1 || h1 > 1) ? false : true;
@@ -111,11 +114,17 @@ class AVLTree {
 		if (to_rotate == head)
 			headCheck = true;
 
+	//	out(); std::cout << std::endl;
+
 		child->right = to_rotate;
 		to_rotate->left = grandchild;
+
+		//out(); std::cout << std::endl;
+
 		to_rotate->height = 1 + maxHeight(to_rotate->left, to_rotate->right);
 		child->height = 1 + maxHeight(child->left, child->right);
 
+		//out(); std::cout << std::endl;
 		if (headCheck)
 			head = child;
 
@@ -129,27 +138,23 @@ public:
 			head = new Node(value);
 		}
 		else {
-			//unsigned int height_counter = 2;
 			Node* temp = head;
-			//way to the 
+			//way to the inserted node
 			std::stack <Node*> way;
 			while (true) {
 				//standart BinarySearchTree insertion
-				//TODO: refactor
 				way.push(temp);
 				if (value < temp->value) {
 					if (!temp->left) {
 						temp->left = new Node(value);
 						temp->height = 1 + maxHeight(temp->left, temp->right);
-							//new
-
 						temp = temp->left;
 						break;
 					}
-					//next comment
+
 					if (maxHeight(temp->left, temp->right) == temp->left->height)
 						++(temp->height);
-					//temp->height = 2 + maxHeight(temp->left, temp->right);
+
 					temp = temp->left;
 				}
 				else if (value == temp->value) {
@@ -163,68 +168,134 @@ public:
 						temp = temp->right;
 						break;
 					}
-					//temp->height = 2 + maxHeight(temp->left, temp->right);
+
 					if (maxHeight(temp->left, temp->right) == temp->right->height)
 						++(temp->height);
+
 					temp = temp->right;
 				}
-				//++height_counter;
 			}
-			//recalculate heights
-			//std::stack<Node*> way_temp;
-			//while (!way_temp.empty()) {
-			//	way_temp.top()->height = 1 + maxHeight(way_temp.top()->left, way_temp.top()->right);
-			//	way_temp.pop();
-			//}
-
-
-
-			Node* newNode = temp;
+		
+			Node* grandchild = temp;
 			Node* child = way.top();
-			Node* grandchild = newNode;
 			way.pop();
-			//check whether there are unbalanced nodes
+
 			while (!way.empty()) {
 				if (!balanced(way.top())) {
-					if (child->left == grandchild) {
-						//left-left case
-						if (way.top()->left == child) {
-							//rightrotation(way.top())
-							way.top() = rightRotation(way.top());
-						}
-						//right-left
-						else {
-							//rightrotationg (child)
-							child = rightRotation(child);
-							//leftrotation (way.top())
-							way.top() = leftRotation(way.top());
-						}
+					if (way.top() == head) {
+						head = leftRotation(way.top());
+						break;
 					}
 					else {
-						//left-right case
-						if (way.top()->left == child) {
-							//leftrotation(child)
-							child = leftRotation(child);
-							//rightrotation(way.top())
-							way.top() = rightRotation(way.top());
+						Node* parent = way.top();
+						way.pop();
+						/*parent = leftRotation(parent);
+						way.top()->right = parent;*/
+
+						//cases
+						//way.top() is a previous element before parent
+						//so no need to pop way
+						bool leftWayChild = (way.top()->left == parent) ? true : false;
+						if (parent->left == child) {
+							if (child->left == grandchild) {
+								//left-left case
+								parent = rightRotation(parent);
+							}
+							else {
+								//left-right case
+								child = leftRotation(child);
+								parent->left = child;
+								parent = rightRotation(parent);
+							}
 						}
-						//right-right case
 						else {
-							//leftrotation (way.top())
-							way.top() = leftRotation(way.top());
-						//	out();
+							if (child->left == grandchild) {
+								//right-left case
+								child = rightRotation(child);
+								parent->right = child;
+								parent = leftRotation(parent);
+							}
+							else {
+								//right-right case
+								parent = leftRotation(parent);
+							}
 						}
+						
+						if (leftWayChild) {
+							way.top()->left = parent;
+						}
+						else {
+							way.top()->right = parent;
+						}
+
 					}
 				}
-				way.pop();
+				else {
+					way.pop();
+				}
 			}
 
 
+			//
+			//Node* newNode = temp;
+			//Node* child = way.top();
+			//Node* grandchild = newNode;
+			//way.pop();
+			//Node* parent = way.top();
+			////check whether there are unbalanced nodes
 			//while (!way.empty()) {
-			//	way.top()->out();
-			//	std::cout << " " << balanced(way.top());
-			//	std::cout <<  std::endl;
-			//	way.pop();
+			//	if (!balanced(way.top())) {
+			//		// --- - left case
+			//		if (child->left == grandchild) {
+			//			if (way.top()->left == child) {
+			//				//left-left case
+			//				*way.top() = *rightRotation(way.top());
+			//				Node* t = way.top();
+			//				way.pop();
+			//				if (way.size()) {
+			//					way.top()->left = t;
+			//				}
+			//			}
+			//			else {
+			//				//left-right case
+			//				child = leftRotation(child);
+			//				*way.top()->left = *leftRotation(child);
+			//				*way.top() = *rightRotation(way.top());
+			//				Node* t = way.top();
+			//				way.pop();
+			//				if (way.size()) {
+			//					way.top()->left = t;
+			//				}
+			//			}
+			//		}
+			//		else {
+			//			if (way.top()->right == child) {
+			//				//right-right case
+			//				*way.top() = *leftRotation(way.top());
+			//				Node* t = way.top();
+			//				way.pop();
+			//				if (way.size()){
+			//					way.top()->right = t;
+			//				}
+			//				
+			//			}
+			//			else {
+			//				//right-left case
+			//				child = rightRotation(child);
+			//				*way.top()->right = *rightRotation(child);
+			//				*way.top() = *leftRotation(way.top());
+			//				Node* t = way.top();
+			//				way.pop();
+			//				if (way.size()) {
+			//					way.top()->right = t;
+			//				}
+			//			}
+			//		}
+			//	}
+			//	else {
+			//		way.pop();
+			//	}
+			//	
 			//}
 		}
 	}
