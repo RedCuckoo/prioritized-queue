@@ -9,7 +9,6 @@
 
 #include "Pair.h"
 
-//TODO: remove Pair from QueueBase definition and think out about more parameters
 /*!
 \brief Base class of the private methods for the queue
 \details In order to use it, you have to pass a type of container to container_type, which has to have implemented the following functions:
@@ -23,6 +22,10 @@
 	unsigned int size();
 \endcode
 By iterator meant container_type_iterator, the iterator for container_type.
+Container_node have to support function out(), not streamed.
+\code
+	void out();
+\endcode
 As well, for the iterators next functions have to be implemented:
 \code
 	iterator operator--();
