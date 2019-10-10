@@ -9,13 +9,13 @@
 #define LIST_H
 
 #include <iostream>
-//TODO: refactor
+//TODO: change names of template parameters
 
 /*!
 	\brief Double linked list
 	\details A custom implementation of STL library std::list with custom random access iterator
 */
-template <class T>
+template <class value_type>
 class List {
 private:
 	/*!
@@ -28,7 +28,7 @@ private:
 	struct Node {
 	public:
 		//TODO: while refactoring make sure that it's better to store node values in a public rather than private field
-		T value;
+		value_type value;
 		Node* next, * prev;
 		bool type = 1;
 		
@@ -49,7 +49,7 @@ private:
 		\param[in] pr Pointer to the previous node (for the beginning of the list, nullptr is passed)
 		\param[in] ne Pointer to the next node (for the end of the list, pointer to an empty node is passed)
 		*/
-		Node(T val, Node* pr, Node* ne) {
+		Node(value_type val, Node* pr, Node* ne) {
 			value = val;
 			prev = pr;
 			next = ne;
@@ -100,8 +100,8 @@ public:
 	\details Method that returns the iterator to the beginning of the list
 	\return Iterator to the beginning of the list
 	*/
-	List_iterator<T> begin() {
-		return List_iterator<T>(this, head);
+	List_iterator<value_type> begin() {
+		return List_iterator<value_type>(this, head);
 	}
 
 	/*!
@@ -109,8 +109,8 @@ public:
 	\details Method that returns the iterator to the end of the list
 	\return Iterator to the end of the list
 	*/
-	List_iterator<T> end() {
-		return List_iterator<T>(this, tail);
+	List_iterator<value_type> end() {
+		return List_iterator<value_type>(this, tail);
 	}
 
 	//-----------List-----------
@@ -152,7 +152,7 @@ public:
 	\details Add elements to the end of the list
 	\param[in] val Value which has to be added to the list
 	*/
-	void push_back(T val) {
+	void push_back(value_type val) {
 		if (head == tail) {
 			head = new Node(val, nullptr, tail);
 			tail->prev = head;
@@ -183,7 +183,7 @@ public:
 	The passed iterator will NOT be valid, though it will be returned as the return value.
 	\return A valid iterator to the same value that passed parameter was pointing to
 	*/
-	List_iterator<T> insert(const List_iterator<T>& it, const T& to_insert) {
+	List_iterator<value_type> insert(const List_iterator<value_type>& it, const value_type& to_insert) {
 		if (it == begin()) {
 			it->prev = new Node(to_insert, nullptr, head);
 			head = head->prev;
@@ -196,7 +196,6 @@ public:
 		return it;
 	}
 	
-	//TODO: implement exceptions?
 	/*!
 	\brief Erase element
 	\details Erases element on the iterated position in the list
@@ -218,7 +217,7 @@ public:
 	\endcode
 	\return A valid iterator to the same position that passed parameter was pointing to
 	*/
-	List_iterator<T> erase(List_iterator<T> it) {
+	List_iterator<value_type> erase(List_iterator<value_type> it) {
 		//throw exception if end()
 		Node* temp = it.node;
 		if (it == begin()) {
@@ -226,7 +225,7 @@ public:
 			it = begin();
 		}
 		else {
-			it = List_iterator<T>(this, temp->next);
+			it = List_iterator<value_type>(this, temp->next);
 			temp->prev->next = temp->next;
 			temp->next->prev = temp->prev;
 		}
@@ -272,7 +271,7 @@ public:
 \details A custom written class which implements iterators for the class List
 It has the same properties as STL library std::random_access_iterator
 */
-template <class T>
+template <class value_type>
 class List_iterator {
 	/*!
 	\brief Friended class List
@@ -281,8 +280,8 @@ class List_iterator {
 	template<class U>
 	friend class List;
 
-	List<T>* list;
-	typename List<T>::Node* node;
+	List<value_type>* list;
+	typename List<value_type>::Node* node;
 public:
 	/*!
 	\brief Constructor
@@ -296,7 +295,7 @@ public:
 	\param[in] list_ptr Pointer to the list, where current iterator belongs to
 	\param[in] node_ptr Pointer to the node, where current iterator has to point
 	*/
-	List_iterator(List<T>* list_ptr, typename List<T>::Node* node_ptr) : list(list_ptr), node(node_ptr) {	}
+	List_iterator(List<value_type>* list_ptr, typename List<value_type>::Node* node_ptr) : list(list_ptr), node(node_ptr) {	}
 
 	/*!
 	\brief Copy constructor
@@ -406,15 +405,15 @@ public:
 
 	/*!
 	\brief Overloaded dereference operator
-	\return A value (of the type T) that is stored in the node of the list that current iterator is pointing to
+	\return A value (of the type value_type) that is stored in the node of the list that current iterator is pointing to
 	*/
-	T& operator*() const{
+	value_type& operator*() const{
 		return node->value;
 	}
 
 /*
 	bool operator<= (const List_iterator& to_compare) const {
-		typename List<T>::Node temp = list->head;
+		typename List<value_type>::Node temp = list->head;
 		while (temp != this->node || temp != to_compar.node) {
 			temp = temp->next;
 		}
@@ -427,7 +426,7 @@ public:
 	}	
 
 	bool operator>= (const List_iterator& to_compare) const {
-		typename List<T>::Node temp = list->head;
+		typename List<value_type>::Node temp = list->head;
 		while (temp != this->node || temp != to_compare.node) {
 			temp = temp->next;
 		}
@@ -448,7 +447,7 @@ private:
 	\details It is private, for convinient implementations of methods only
 	\return A gives access to the elelments of the node, to which current iterator is pointing to
 	*/
-	typename List<T>::Node* operator->() const{
+	typename List<value_type>::Node* operator->() const{
 		return node;
 	}
 
@@ -464,13 +463,14 @@ private:
 /*!
 \brief Overloaded left adding to the List_iterator
 \details Shifts iterator left or right regardles of the parameter
-\param val If val > 0, then passed List_iterator<T> to_add will be shifted to the right val positions
+\param val If val > 0, then passed List_iterator<value_type> to_add will be shifted to the right val positions
 Otherwise - to the left
 \param to_add This parameter is passed not via reference, because it is changed in the function
 \return Copy of shifted to_add iterator
-*/
-template <class T>
-List_iterator<T> operator+ (int val, List_iterator<T> to_add) {
+*/ 
+
+template <class value_type>
+List_iterator<value_type> operator+ (int val, List_iterator<value_type> to_add) {
 	if (val >= 0) {
 		for (int i = 0; i < val; ++i) {
 			to_add.node = to_add.node->next;

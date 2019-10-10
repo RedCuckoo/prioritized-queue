@@ -6,8 +6,8 @@
 #include "Pair.h"
 #include "QueueBase.h"
 
-template <class T>
-class VectorPriorQueue : private QueueBase<std::vector<Pair<T, unsigned int>>, Pair<T, unsigned int>> {
+template <class value_type>
+class VectorPriorQueue : private QueueBase<std::vector<value_type>, value_type> {
 
 };
 

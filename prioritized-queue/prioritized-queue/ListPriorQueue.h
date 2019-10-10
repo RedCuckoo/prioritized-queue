@@ -6,8 +6,8 @@
 #include "Pair.h"
 #include "QueueBase.h"
 
-template <class T>
-class ListPriorQueue : public QueueBase<List<Pair<T, unsigned int>>, Pair<T, unsigned int>> {
+template <class value_type>
+class ListPriorQueue : public QueueBase<List<value_type>, value_type> {
 
 };
 

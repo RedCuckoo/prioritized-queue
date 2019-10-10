@@ -17,7 +17,7 @@
 	bool empty();
 	iterator begin();
 	iterator end();
-	iterator insert(iterator, container_node);
+	iterator insert(iterator, container_node_value_type);
 	iterator erase();
 	unsigned int size();
 \endcode
@@ -29,13 +29,13 @@ Container_node have to support function out(), not streamed.
 As well, for the iterators next functions have to be implemented:
 \code
 	iterator operator--();
-	container_node operator*();
+	container_node_value_type operator*();
 \endcode
 If something is missing in your passed type, override functions changing missed methods
 */
-template <class container_type, class container_node>
+template <class container_type, class container_node_value_type>
 class QueueBase {
-private:
+protected:
 	container_type container;
 public:
 	/*!
@@ -43,7 +43,7 @@ public:
 	\details Add elements following the rules of the queue with priority
 	\param[in] elem Element which has to be added
 	*/
-	void push(container_node elem) {
+	void push(container_node_value_type elem) {
 		if (container.empty()) {
 			container.push_back(elem);
 		}
@@ -79,7 +79,7 @@ public:
 	\brief Getter for the top element in the queue
 	\return Reference to the top element in the queue
 	*/
-	container_node& front() {
+	container_node_value_type& front() {
 		return *--container.end();
 	}
 
@@ -87,7 +87,7 @@ public:
 	\brief Getter for the last element in the queue
 	\return Reference to the last element in the queue
 	*/
-	container_node& back() {
+	container_node_value_type& back() {
 		return *(container.begin());
 	}
 
