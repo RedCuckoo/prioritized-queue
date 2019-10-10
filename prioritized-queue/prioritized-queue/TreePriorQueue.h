@@ -1,16 +1,32 @@
+/*!
+	\file
+	\brief Header file containing class TreePriorQueue
+	\details This file contains an implementation of the priority queue based on the binary search tree	
+*/
+
 #ifndef TREEPRIORQUEUE_H
 #define TREEPRIORQUEUE_H
 
 #include "QueueBase.h"
 #include "AVLTree.h"
-#include "Pair.h"
 
+//TODO: add support of not Pair element (e.g accept two parameters to function like push)
+/*!
+	\brief Priority queue based on the binary search tree
+	\details In order of this function to work properly, you should pass Pair<value, priority> as a value_type.
+	The class itself is inheritted from the base of the priority queue and uses custom written self balanced AVL tree.
+*/
 template <class value_type>
-class TreePriorQueue : 
-	public QueueBase<AVLTree<value_type>, value_type> {
+class TreePriorQueue : public QueueBase<AVLTree<value_type>, value_type> {
 public:
+	/*!
+	\brief Method to add element to the queue
+	\details Overridden method of the QueueBase class, because the given there function adds elements to the list.
+	That way we didn't have to implement function insert, as rules of parent class states.
+	\param [in] elem Element to be added
+	*/
 	void push(value_type elem) {
-		QueueBase<AVLTree<Pair<value_type, unsigned int>>, Pair<value_type, unsigned int>>::container.push(elem);
+		QueueBase<AVLTree<value_type>, value_type>::container.push(elem);
 	}
 };
 

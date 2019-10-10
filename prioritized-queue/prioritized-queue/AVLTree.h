@@ -335,7 +335,7 @@ public:
 	\details Add elements to the tree and balance the tree
 	\param[in] value Value which has to be added to the tree
 	*/
-	void push(const value_type& value) {
+	void push(value_type value) {
 		++tree_size;
 		if (!head) {
 			head = new Node(value);
