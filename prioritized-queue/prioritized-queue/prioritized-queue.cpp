@@ -8,7 +8,7 @@
 #include "List.h"
 #include "VectorPriorQueue.h"
 #include "TreePriorQueue.h"
-
+#include "Circle.h"
 #include "AVLTree.h"
 
 int main()
@@ -17,33 +17,43 @@ int main()
 	//ListPriorQueue <int> a;
 	//ListPriorQueue <Pair<int, unsigned int>> a;
 	//PriorQueue <int> a;
-	AVLTree<Pair<int, unsigned int>> a;
-	//TreePriorQueue<int> a;
-	//AVLTree<int> a;
-	Pair<int, unsigned int> d = { 7,4 };
-	Pair<int, unsigned int> b = { 4,3 };
-	Pair<int, unsigned int> e = { 5,3 };
-	Pair<int, unsigned int> f = { 2,3 };
-	Pair<int, unsigned int> g = { 2,2 };
-	Pair<int, unsigned int> h = { 9,6 };
-	Pair<int, unsigned int> r = { 8,5 };
-	Pair<int, unsigned int> n = { 6,3 };
-	Pair<int, unsigned int> c = { 5,2 };
-	
-	a.push(c);
-	a.push(n);
-	a.push(r);
-	a.push(h);
-	a.push(g);
-	a.push(f);
-	a.push(e);
-	a.push(b);
-	a.push(d);
-	a.out(); std::cout << std::endl;
+	//AVLTree<Pair<int>> a;
+	////TreePriorQueue<int> a;
+	////AVLTree<int> a;
+	//Pair<int, unsigned int> d = { 7,4 };
+	//Pair<int, unsigned int> b = { 4,3 };
+	//Pair<int, unsigned int> e = { 5,3 };
+	//Pair<int, unsigned int> f = { 2,3 };
+	//Pair<int, unsigned int> g = { 2,2 };
+	//Pair<int, unsigned int> h = { 9,6 };
+	//Pair<int, unsigned int> r = { 8,5 };
+	//Pair<int, unsigned int> n = { 6,3 };
+	//Pair<int, unsigned int> c = { 5,2 };
+	//
+	//a.push(c);
+	//a.push(n);
+	//a.push(r);
+	//a.push(h);
+	//a.push(g);
+	//a.push(f);
+	//a.push(e);
+	//a.push(b);
+	//a.push(d);
+	//a.out(); std::cout << std::endl;
 
-	
-
-	a.out();
+	Circle q(0, 0, 6);
+	Pair<double, double> point = { 9,9 };
+	Circle g(0, 0, 2);
+	Line k(1,0,-9);
+	Line p(1, 2, -2);
+	Circle l = p.inverse(q);
+	auto e = l.inverse(q);
+	inversePoint(point, q);
+	inversePoint(point, q);
+	//g.reflectOverLine(q);
+	//q.inverse(q);
+	//auto e = p.inverse(q);
+	//a.out();
 } 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

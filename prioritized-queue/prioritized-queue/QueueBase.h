@@ -7,8 +7,6 @@
 #ifndef QUEUEBASE_H
 #define QUEUEBASE_H
 
-#include "Pair.h"
-
 /*!
 \brief Base class of the private methods for the queue
 \details In order to use it, you have to pass a type of container to container_type, which has to have implemented the following functions:

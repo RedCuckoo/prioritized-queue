@@ -15,13 +15,12 @@
 	\details A custom implementation of Pair<value_type,priority_type>, as it is used for queue with priority fields have the related names
 	Currently it is possible to create a Pair only through the provided constructor
 */
-template<class value_type, class priority_type>
+template<class value_type, class priority_type = unsigned int>
 class Pair {
 private:
 	value_type value;
 	priority_type priority;
 
-	//friend int main();
 	/*!
 	\brief Friended operator<<
 	\details Allows to output information with the stream
@@ -52,6 +51,14 @@ public:
 	*/
 	value_type getVal() const {
 		return value;
+	}	
+	
+	/*!
+	\brief Setter method for the value
+	\details To set the value of the Pair
+	*/
+	void setVal(const value_type& val) {
+		value = val;
 	}
 
 	/*!
@@ -60,6 +67,14 @@ public:
 	*/
 	priority_type getPrior() const {
 		return priority;
+	}
+
+	/*!
+	\brief Setter method for the priority
+	\details To set the priority of the Pair
+	*/
+	void setPrior(const value_type& pr) {
+		priority = pr;
 	}
 
 	/*!
