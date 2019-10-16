@@ -12,8 +12,6 @@
 #include "Line.h"
 #include <vector>
 
-
-
 /*!
 \brief A figure Circle
 \details An implementation of the circle, given in a standart form: two points for center and radius

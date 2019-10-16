@@ -10,7 +10,6 @@
 #include "QueueBase.h"
 #include "AVLTree.h"
 
-//TODO: add support of not Pair element (e.g accept two parameters to function like push)
 /*!
 	\brief Priority queue based on the binary search tree
 	\details In order of this function to work properly, you should pass Pair<value, priority> as a value_type.
@@ -25,9 +24,12 @@ public:
 	That way we didn't have to implement function insert, as rules of parent class states.
 	\param [in] elem Element to be added
 	*/
-	void push(value_type elem) {
-		QueueBase<AVLTree<value_type>, value_type>::container.push(elem);
-	}
+	void push(value_type elem);
 };
+
+template <class value_type>
+void TreePriorQueue<value_type>::push(value_type elem) {
+	QueueBase<AVLTree<value_type>, value_type>::container.push(elem);
+}
 
 #endif // !TREEPRIORQUEUE_H

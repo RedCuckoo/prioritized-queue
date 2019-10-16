@@ -10,19 +10,26 @@
 #include "TreePriorQueue.h"
 #include "Circle.h"
 #include "AVLTree.h"
-
+#include "AVLTree_iterator.h"
+#include "List_iterator.h"
 
 int main()
 {
 	//VectorPriorQueue <int> a;
 	//ListPriorQueue <int> a;
 	//ListPriorQueue <Pair<int, unsigned int>> a;
+	List<double> a;
+	a.push_back(3);
+	a.push_back(8);
+	a.push_back(9);
+	List_iterator<double> k = a.begin();
+	++k;
 	//PriorQueue <int> a;
 	//AVLTree<Pair<int>> a;
 	////TreePriorQueue<int> a;
 	////AVLTree<int> a;
-	//Pair<int, unsigned int> d = { 7,4 };
-	//Pair<int, unsigned int> b = { 4,3 };
+	Pair<int, unsigned int> d = { 7,4 };
+	Pair<int, unsigned int> b = { 4,3 };
 	//Pair<int, unsigned int> e = { 5,3 };
 	//Pair<int, unsigned int> f = { 2,3 };
 	//Pair<int, unsigned int> g = { 2,2 };
@@ -42,14 +49,14 @@ int main()
 	//a.push(d);
 	//a.out(); std::cout << std::endl;
 
-	Circle q(0, 0, 6);
-	Pair<double, double> point = { 9,9 };
-	Circle g(0, 0, 2);
-	Line k(0,1,-9);
-	Line p(0, 1, 0);
-	
+	//Circle q(0, 0, 6);
+	//Pair<double, double> point = { 9,9 };
+	//Circle g(0, 0, 2);
+	//Line k(0,1,-9);
+	//Line p(0, 1, 0);
+	//
 	//auto e = p.intersection(q);
-	k.reflectOverLine(p);
+	//k.reflectOverLine(p);
 	//Circle l = p.inverse(q);
 	//auto e = l.inverse(q);
 	//inversePoint(point, q);

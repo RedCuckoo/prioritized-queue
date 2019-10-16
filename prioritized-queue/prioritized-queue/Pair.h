@@ -33,112 +33,141 @@ public:
 	\details Allowing a default constructor access
 	*/
 	Pair() = default;
+	Pair(value_type val, priority_type prior);
 	
-	/*!
-	\brief Constructor
-	\details A constructor to create a pair for the queue with priority
-	\param[in] val The value which queue stores
-	\param[in] prior The priority which provided value has
-	*/
-	Pair(value_type val, priority_type prior){
-		value = val;
-		priority = prior;
-	}
+	value_type getVal() const;
+	void setVal(const value_type& val);
+	priority_type getPrior() const;
+	void setPrior(const value_type& pr);
 
-	/*!
-	\brief Getter method for the value
-	\details To get the value of the Pair
-	*/
-	value_type getVal() const {
-		return value;
-	}	
-	
-	/*!
-	\brief Setter method for the value
-	\details To set the value of the Pair
-	*/
-	void setVal(const value_type& val) {
-		value = val;
-	}
+	bool operator>(const Pair& to_compare) const;
+	bool operator>=(const Pair& to_compare) const;
+	bool operator<(const Pair& to_compare) const;
+	bool operator<=(const Pair& to_compare) const;
+	bool operator==(const Pair& to_compare) const;
+	bool operator!=(const Pair& to_compare) const;
 
-	/*!
-	\brief Getter method for the priority
-	\details To get the priority of the Pair
-	*/
-	priority_type getPrior() const {
-		return priority;
-	}
-
-	/*!
-	\brief Setter method for the priority
-	\details To set the priority of the Pair
-	*/
-	void setPrior(const value_type& pr) {
-		priority = pr;
-	}
-
-	/*!
-	\brief Overloaded "is bigger than" operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if current Pair is bigger than to_compare and false value otherwise
-	*/
-	bool operator>(const Pair& to_compare) const {
-		return (priority > to_compare.getPrior()) ? true : false;
-	}	
-	
-	/*!
-	\brief Overloaded "is bigger or equal than" operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if current Pair is bigger or equal than to_compare and false value otherwise
-	*/
-	bool operator>=(const Pair& to_compare) const {
-		return (priority >= to_compare.getPrior()) ? true : false;
-	}	
-	
-	/*!
-	\brief Overloaded "is less than" operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if current Pair is less than to_compare and false value otherwise
-	*/
-	bool operator<(const Pair& to_compare) const {
-		return (priority < to_compare.getPrior()) ? true : false;
-	}	
-	
-	/*!
-	\brief Overloaded "is less or equal than" operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if current Pair is less or equal than to_compare and false value otherwise
-	*/
-	bool operator<=(const Pair& to_compare) const {
-		return (priority <= to_compare.getPrior()) ? true : false;
-	}
-
-	/*!
-	\brief Overloaded equality operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if they are equal and false value otherwise
-	*/
-	bool operator==(const Pair& to_compare) const {
-		return (priority == to_compare.getPrior() && value == to_compare.getVal()) ? true : false;
-	}	
-	
-	/*!
-	\brief Overloaded inequality operator
-	\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
-	\return True value if they are unequal and false value otherwise
-	*/
-	bool operator!=(const Pair& to_compare) const {
-		return (priority != to_compare.getPrior() || value == to_compare.getVal()) ? true : false;
-	}
-
-	/*!
-	\brief Output stored information
-	\details Print stored fields of the Pair to the console, using <iostream> library
-	*/
-	void out() {
-		std::cout << value << " " << priority << std::endl;
-	}
+	void out();
 };
+
+/*!
+\brief Constructor
+\details A constructor to create a pair for the queue with priority
+\param[in] val The value which queue stores
+\param[in] prior The priority which provided value has
+*/
+template<class value_type, class priority_type>
+Pair<value_type, priority_type>::Pair(value_type val, priority_type prior) {
+	value = val;
+	priority = prior;
+}
+
+/*!
+\brief Getter method for the value
+\details To get the value of the Pair
+*/
+template<class value_type, class priority_type>
+value_type Pair<value_type, priority_type>::getVal() const {
+	return value;
+}
+
+/*!
+\brief Setter method for the value
+\details To set the value of the Pair
+*/
+template<class value_type, class priority_type>
+void Pair<value_type, priority_type>::setVal(const value_type& val) {
+	value = val;
+}
+
+/*!
+\brief Getter method for the priority
+\details To get the priority of the Pair
+*/
+template<class value_type, class priority_type>
+priority_type Pair<value_type, priority_type>::getPrior() const {
+	return priority;
+}
+
+/*!
+\brief Setter method for the priority
+\details To set the priority of the Pair
+*/
+template<class value_type, class priority_type>
+void Pair<value_type, priority_type>::setPrior(const value_type& pr) {
+	priority = pr;
+}
+
+/*!
+\brief Overloaded "is bigger than" operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if current Pair is bigger than to_compare and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator>(const Pair& to_compare) const {
+	return (priority > to_compare.getPrior()) ? true : false;
+}
+
+/*!
+\brief Overloaded "is bigger or equal than" operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if current Pair is bigger or equal than to_compare and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator>=(const Pair& to_compare) const {
+	return (priority >= to_compare.getPrior()) ? true : false;
+}
+
+/*!
+\brief Overloaded "is less than" operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if current Pair is less than to_compare and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator<(const Pair& to_compare) const {
+	return (priority < to_compare.getPrior()) ? true : false;
+}
+
+/*!
+\brief Overloaded "is less or equal than" operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if current Pair is less or equal than to_compare and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator<=(const Pair& to_compare) const {
+	return (priority <= to_compare.getPrior()) ? true : false;
+}
+
+/*!
+\brief Overloaded equality operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if they are equal and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator==(const Pair& to_compare) const {
+	return (priority == to_compare.getPrior() && value == to_compare.getVal()) ? true : false;
+}
+
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
+template<class value_type, class priority_type>
+bool Pair<value_type, priority_type>::operator!=(const Pair& to_compare) const {
+	return (priority != to_compare.getPrior() || value == to_compare.getVal()) ? true : false;
+}
+
+/*!
+\brief Output stored information
+\details Print stored fields of the Pair to the console, using <iostream> library
+*/
+template<class value_type, class priority_type>
+void Pair<value_type, priority_type>::out() {
+	std::cout << value << " " << priority << std::endl;
+}
+
+//--------------------end-of-Pair-functions-implementation----------------------------
 
 /*!
 \brief Operator<<
@@ -157,7 +186,7 @@ public:
 */
 template <class value_type, class priority_type>
 std::ostream& operator<<(std::ostream& out_stream, const Pair<value_type, priority_type>& to_out) {
-	
+
 	std::cout << to_out.value << " " << to_out.priority;// << std::endl;
 	return out_stream;
 }
