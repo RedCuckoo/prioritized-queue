@@ -1,7 +1,14 @@
 #include "Circle.h"
 #include "Line.h"	
 #include "Pair.h"
+#include "Math.h"
+#include <vector>
 
+
+/*!
+\param [in] fPoint One of the points, which form a Line
+\param [in] sPoint Another of the points, which form a Line
+*/
 Line::Line(Pair<double, double> fPoint, Pair<double, double> sPoint) {
 	double x1 = fPoint.getVal(), x2 = sPoint.getVal(), y1 = fPoint.getPrior(), y2 = sPoint.getPrior();
 	a = y2 - y1;
@@ -9,63 +16,43 @@ Line::Line(Pair<double, double> fPoint, Pair<double, double> sPoint) {
 	c = x2 * y1 - x1 * y2;
 }
 
-Pair<double, double> Line::intersection(const Circle& to_find) {
-	/*
-	{(x-x0)^2 + (y-y0)^2 = r^2
-	{y = k*x + b
-	*/
-	std::vector<Pair<double, double>> intersectionPoints;
-	double x = to_find.center.getVal(), y = to_find.center.getPrior(), radius = to_find.radius;
-
-
-	if (b) {
-		double slope = -a / b;
-		double y_intersection = -c / b;
-		//sets x value
-		intersectionPoints = squareEquationSolver(slope * slope + 1, 2. * (slope * (y_intersection - y) - x), x * x + y_intersection * (y_intersection - 2. * y) + y * y - radius * radius);
-		//std::vector<Pair<double, double>> intersectionPoints = squareEquationSolver(x, 8, 0);
-	}
-	else {
-		//sets whole pair
-		if (a) {
-				//the dot is on the left from x = -c/a
-				double d = radius * radius - (-c / a - x) * (-c / a - x);
-				Pair<double, double> temp;
-				temp.setVal(-c / a);
-				if (d > 0) {
-					temp.setPrior(y + sqrt(d));
-					intersectionPoints.push_back(temp);
-					temp.setPrior(y - sqrt(d));
-					intersectionPoints.push_back(temp);
-				}
-				else if (d == 0) {
-					temp.setPrior(y);
-					intersectionPoints.push_back(temp);
-				}
-				else {
-
-				}
-		}
-	}
-
-
-	if (b){
-		for (unsigned int i = 0; i < intersectionPoints.size(); i++) {
-			intersectionPoints[i].setPrior((-a / b) * intersectionPoints[i].getVal() + -c / b);
-		}
-	}
-	//TODO: change return value
-	return to_find.center;
+/*!
+This function uses already defined and implemented function, from the class of Circle.
+*/
+std::vector<Pair<double, double>> Line::intersection(const Circle& to_find) {
+	Circle copy = to_find;
+	return copy.intersection(*this);
 }
 
+/*!
+The function checks, if the lines aren't in the form of x = const.
+If they are not, the function will find the intersection points, choose a point which is not on the intersection and return a Line out of two points.
+Also some trivial cases are included to prevent division on 0.
+*/
 void Line::reflectOverLine(const Line& baseLine) {
 	double a2 = baseLine.a, b2 = baseLine.b, c2 = baseLine.c;
 	if (b2 && b) {
-		double x0 = (c * b2 - c2 * b) / (a2 * b - a * b2);
-		double y0 = (-a / b) * x0 - c / b;
+		double x0, y0, xs, ys;
+		
+		if (!a && !a2) {
+			x0 = 0;
+		}
+		else {
+			x0 = (c * b2 - c2 * b) / (a2 * b - a * b2);
+		}
+
+		y0 = (-a / b) * x0 - c / b;
 		Pair<double, double> symetricNew = findSymmetricDot(baseLine, Pair<double, double>(x0 + 1, (-a / b) * x0 - c / b));
-		double xs = symetricNew.getVal();
-		double ys = symetricNew.getPrior();
+		
+		xs = symetricNew.getVal();
+		ys = symetricNew.getPrior();
+		
+		if (!a && !a2) {
+			symetricNew = findSymmetricDot(baseLine, Pair<double, double>(x0, y0));
+			x0 = symetricNew.getVal();
+			y0 = symetricNew.getPrior();
+		}
+
 		a = y0 - ys;
 		b = xs - x0;
 		c = x0 * ys - xs * y0;
@@ -78,6 +65,7 @@ void Line::reflectOverLine(const Line& baseLine) {
 		a = 0;
 	}
 	else {
+		//!b && !b2
 		if (a && a2) {
 			Pair<double, double> symmetricNew = findSymmetricDot(baseLine, Pair<double, double>(-c / a, 0));
 			a = 1;
@@ -86,6 +74,14 @@ void Line::reflectOverLine(const Line& baseLine) {
 	}
 }
 
+/*!
+If the center of the base Circle doesn't lay on the Line, the inversion of the Line will be a Circle.
+The center of the base Circle will lay on the newly formed Circle. 
+
+If the center of the base Circle lays on the Line, the inversion of the Line will be Line itself. 
+
+The function calculates the closes point of the newly formed Circle to the Line, following the calculation on the center and radius relatively.
+*/
 Circle Line::inverse(const Circle& baseCircle) {
 	Pair<double, double> diamPoint;
 	double x0 = baseCircle.center.getVal(), y0 = baseCircle.center.getPrior();

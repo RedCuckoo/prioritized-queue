@@ -11,6 +11,7 @@
 #include "Circle.h"
 #include "AVLTree.h"
 
+
 int main()
 {
 	//VectorPriorQueue <int> a;
@@ -44,12 +45,15 @@ int main()
 	Circle q(0, 0, 6);
 	Pair<double, double> point = { 9,9 };
 	Circle g(0, 0, 2);
-	Line k(1,0,-9);
-	Line p(1, 2, -2);
-	Circle l = p.inverse(q);
-	auto e = l.inverse(q);
-	inversePoint(point, q);
-	inversePoint(point, q);
+	Line k(0,1,-9);
+	Line p(0, 1, 0);
+	
+	//auto e = p.intersection(q);
+	k.reflectOverLine(p);
+	//Circle l = p.inverse(q);
+	//auto e = l.inverse(q);
+	//inversePoint(point, q);
+	//inversePoint(point, q);
 	//g.reflectOverLine(q);
 	//q.inverse(q);
 	//auto e = p.inverse(q);
