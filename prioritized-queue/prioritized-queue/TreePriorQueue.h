@@ -25,11 +25,40 @@ public:
 	\param [in] elem Element to be added
 	*/
 	void push(value_type elem);
+
+	void out();
+
+	value_type& front();
+	value_type& back();
+	void pop();
 };
+
+
+template <class value_type>
+void TreePriorQueue<value_type>::pop() {
+	QueueBase<AVLTree<value_type>, value_type>::container.erase(QueueBase<AVLTree<value_type>, value_type>::container.begin());
+}
+
+template<class value_type>
+value_type& TreePriorQueue<value_type>::front(){
+	return *QueueBase<AVLTree<value_type>, value_type>::container.begin();
+}
+
+template<class value_type>
+value_type& TreePriorQueue<value_type>::back(){
+	return *--QueueBase<AVLTree<value_type>, value_type>::container.end();
+}
 
 template <class value_type>
 void TreePriorQueue<value_type>::push(value_type elem) {
 	QueueBase<AVLTree<value_type>, value_type>::container.push(elem);
+}
+
+template<class value_type>
+void TreePriorQueue<value_type>::out() {
+	for (auto i = QueueBase<AVLTree<value_type>, value_type>::container.begin(); i != QueueBase<AVLTree<value_type>, value_type>::container.end(); ++i) {
+		(*i).out();
+	}
 }
 
 #endif // !TREEPRIORQUEUE_H
