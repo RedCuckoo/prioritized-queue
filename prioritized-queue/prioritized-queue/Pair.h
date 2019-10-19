@@ -164,7 +164,8 @@ bool Pair<value_type, priority_type>::operator!=(const Pair& to_compare) const {
 */
 template<class value_type, class priority_type>
 void Pair<value_type, priority_type>::out() {
-	std::cout << value << " " << priority << std::endl;
+	if (this)
+		std::cout << value << " " << priority << std::endl;
 }
 
 //--------------------end-of-Pair-functions-implementation----------------------------
@@ -186,8 +187,8 @@ void Pair<value_type, priority_type>::out() {
 */
 template <class value_type, class priority_type>
 std::ostream& operator<<(std::ostream& out_stream, const Pair<value_type, priority_type>& to_out) {
-
-	std::cout << to_out.value << " " << to_out.priority;// << std::endl;
+	if (to_out != Pair<value_type, priority_type>())
+		std::cout << to_out.value << " " << to_out.priority;// << std::endl;
 	return out_stream;
 }
 
