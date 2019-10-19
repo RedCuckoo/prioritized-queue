@@ -188,6 +188,7 @@ void AVLTree_iterator<value_type>::getCoord() {
 	for (unsigned int i = 0; i < listedTree.size(); i++) {
 		if (node == listedTree[i]) {
 			coord = i;
+			//return coord;
 			break;
 		}
 	}

@@ -212,7 +212,7 @@ public:
 	\endcode
 	\return A valid iterator to the same position that passed parameter was pointing to
 	*/
-	AVLTree_iterator<value_type> erase(AVLTree_iterator<value_type> it);
+	void erase(AVLTree_iterator<value_type> it);
 };
 
 
@@ -360,76 +360,93 @@ void AVLTree<value_type>::to_balance(std::stack<Node*>& way, bool deletion) {
 		child = way.top();
 		parChiGra[0] = child;
 		parChiGra[1] = grandchild;
-		way.pop();
+		
+		if (!deletion)
+			way.pop();
+
 
 		bool firstTimeDeletion = true;
 
 		while (!way.empty()) {
-			if (!balanced(way.top())) {
-				Node* parent = way.top();
-				if (deletion && firstTimeDeletion) {
-					child = (parent->right->height > parent->left->height) ? parent->right : parent->left;
-					grandchild = (child->right->height > child->left->height) ? child->right : child->left;
-					parChiGra[0] = child;
-					parChiGra[1] = grandchild;
-					firstTimeDeletion = false;
-				}
+			//if (!deletion && firstTimeDeletion) {
+			//	way.pop();
+			//	deletion = true;
+			//}
 
-				parChiGra[2] = parChiGra[1];
-				parChiGra[1] = parChiGra[0];
-				parChiGra[0] = parent;
-				child = parChiGra[1];
-				grandchild = parChiGra[2];
-				way.pop();
+			//if (!way.empty()) {
+				if (!balanced(way.top())) {
+					Node* parent = way.top();
+					if (deletion && firstTimeDeletion) {
+						unsigned int parRigHeight, parLefHeight, chiLefHeight, chiRigHeight;
+						parRigHeight = (parent->right) ? (parent->right->height) : (0);
+						parLefHeight = (parent->left) ? (parent->left->height) : (0);
+						
+						child = (parRigHeight > parLefHeight) ? parent->right : parent->left;
+						chiRigHeight = (child->right) ? (child->right->height) : (0);
+						chiLefHeight = (child->left) ? (child->left->height) : (0);
+						
+						grandchild = (chiRigHeight > chiLefHeight) ? child->right : child->left;
+						parChiGra[0] = child;
+						parChiGra[1] = grandchild;
+						firstTimeDeletion = false;
+					}
 
-				//cases
-				bool leftWayChild = true;
-				if (!way.empty()) {
-					leftWayChild = (way.top()->left == parent) ? true : false;
-				}
+					parChiGra[2] = parChiGra[1];
+					parChiGra[1] = parChiGra[0];
+					parChiGra[0] = parent;
+					child = parChiGra[1];
+					grandchild = parChiGra[2];
+					way.pop();
 
-				if (parent->left == child) {
-					if (child->left == grandchild) {
-						//left-left case
-						parent = rightRotation(parent);
+					//cases
+					bool leftWayChild = true;
+					if (!way.empty()) {
+						leftWayChild = (way.top()->left == parent) ? true : false;
+					}
+
+					if (parent->left == child) {
+						if (child->left == grandchild) {
+							//left-left case
+							parent = rightRotation(parent);
+						}
+						else {
+							//left-right case
+							child = leftRotation(child);
+							parent->left = child;
+							parent = rightRotation(parent);
+						}
 					}
 					else {
-						//left-right case
-						child = leftRotation(child);
-						parent->left = child;
-						parent = rightRotation(parent);
+						if (child->left == grandchild) {
+							//right-left case
+							child = rightRotation(child);
+							parent->right = child;
+							parent = leftRotation(parent);
+						}
+						else {
+							//right-right case
+							parent = leftRotation(parent);
+						}
+					}
+
+					if (!way.empty()) {
+						if (leftWayChild) {
+							way.top()->left = parent;
+						}
+						else {
+							way.top()->right = parent;
+						}
 					}
 				}
 				else {
-					if (child->left == grandchild) {
-						//right-left case
-						child = rightRotation(child);
-						parent->right = child;
-						parent = leftRotation(parent);
-					}
-					else {
-						//right-right case
-						parent = leftRotation(parent);
-					}
+					parChiGra[2] = parChiGra[1];
+					parChiGra[1] = parChiGra[0];
+					parChiGra[0] = way.top();
+					child = parChiGra[1];
+					grandchild = parChiGra[2];
+					way.pop();
 				}
-
-				if (!way.empty()) {
-					if (leftWayChild) {
-						way.top()->left = parent;
-					}
-					else {
-						way.top()->right = parent;
-					}
-				}
-			}
-			else {
-				parChiGra[2] = parChiGra[1];
-				parChiGra[1] = parChiGra[0];
-				parChiGra[0] = way.top();
-				child = parChiGra[1];
-				grandchild = parChiGra[2];
-				way.pop();
-			}
+			//}
 		}
 	}
 }
@@ -535,12 +552,18 @@ typename AVLTree<value_type>::Node* AVLTree<value_type>::minNode(std::stack<Node
 }
 
 template <class value_type>
-AVLTree_iterator<value_type> AVLTree<value_type>::erase(AVLTree_iterator<value_type> it) {
+void AVLTree<value_type>::erase(AVLTree_iterator<value_type> it) {
 	if (!head || !it.node) {
 		//empty tree
-		return AVLTree_iterator<value_type>(this);
+		return;// AVLTree_iterator<value_type>(this);
+	}
+	else if (head->height == 1) {
+		delete head;
+		head = nullptr;
 	}
 	else {
+		//unsigned int position = it.getCoord();
+
 		Node* temp = head;
 		std::stack<Node*> way;
 		std::stack<Node*> temp_way;
@@ -554,13 +577,13 @@ AVLTree_iterator<value_type> AVLTree<value_type>::erase(AVLTree_iterator<value_t
 				if (temp->left)
 					temp = temp->left;
 				else
-					return AVLTree_iterator<value_type>(this);
+					return;// AVLTree_iterator<value_type>(this);
 			}
 			else {
 				if (temp->right)
 					temp = temp->right;
 				else
-					return AVLTree_iterator<value_type>(this);
+					return;// AVLTree_iterator<value_type>(this);
 			}
 		}
 		bool twoChilder = true;
@@ -583,15 +606,20 @@ AVLTree_iterator<value_type> AVLTree<value_type>::erase(AVLTree_iterator<value_t
 				}
 				t_ptr = temp;
 
+				if (temp)
+					delete temp;
+
 			}
 			else {
 				//one child
 				temp->value = t_ptr->value;
-				if (temp->left == t_ptr)
-					temp->left = nullptr;
-				else {
-					temp->right = nullptr;
-				}
+				//if (temp->left == t_ptr)
+				//	temp->left = nullptr;
+				//else {
+				//	temp->right = nullptr;
+				//}
+				temp->left = t_ptr->left;
+				temp->right= t_ptr->right;
 				delete t_ptr;
 			}
 			way.push(nullptr);
@@ -615,9 +643,12 @@ AVLTree_iterator<value_type> AVLTree<value_type>::erase(AVLTree_iterator<value_t
 		updateHeights();
 		to_balance(way, 1);
 		--tree_size;
-		if (temp)
-			delete temp;
-		return AVLTree_iterator<value_type>(this, (++it).node);
+		//if (temp) {
+		//	delete temp;
+//			temp = nullptr;
+		//}
+
+		//return AVLTree_iterator<value_type>(this, (begin()+(position-1)).node);
 	}
 }
 
