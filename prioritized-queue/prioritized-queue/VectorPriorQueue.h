@@ -16,9 +16,15 @@
 	The class itself is inheritted from the base of the priority queue and uses custom written dynamically allocated array, std::vector.
 */
 template <class value_type>
-class VectorPriorQueue : private QueueBase<std::vector<value_type>, value_type> {
-
+class VectorPriorQueue : public QueueBase<std::vector<value_type>, value_type> {
+public:
+	void pop();
 };
+
+template<class value_type>
+void VectorPriorQueue<value_type>::pop() {
+	QueueBase<std::vector<value_type>, value_type>::container.pop_back();
+}
 
 
 #endif // !VECTORPRIORQUEUE_H
