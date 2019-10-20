@@ -57,7 +57,7 @@ void QueueBase<container_type, container_node_value_type>::push(container_node_v
 	}
 	else {
 		for (auto it = container.begin(); it != container.end(); ++it) {
-			if (*it > elem) {
+			if (*it >= elem) {
 				container.insert(it, elem);
 				return;
 			}
@@ -119,9 +119,14 @@ unsigned int QueueBase<container_type, container_node_value_type>::size() {
 */
 template <class container_type, class container_node_value_type>
 void QueueBase<container_type, container_node_value_type>::out() {
-	for (auto i = container.begin(); i != container.end(); ++i) {
+	for (auto i = container.end(); i != container.begin(); --i) {
+		if (i == container.end())
+			continue;
 		(*i).out();
 	}
+
+	if(container.size() >= 1)
+		(*container.begin()).out();
 }
 
 #endif // !QUEUEBASE_H
