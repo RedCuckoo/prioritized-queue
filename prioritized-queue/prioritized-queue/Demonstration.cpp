@@ -94,26 +94,26 @@ void demo() {
 			show_int<ListPriorQueue<Pair<int>>>();
 		else if (ans1 == 2 && ans2 == 1)
 			show_string<ListPriorQueue<Pair<std::string>>>();
-		//else if (ans1 == 3 && ans2 == 1)
-		//	show<ListPriorQueue<Pair<Line>>>(ans1);
-		//else if (ans1 == 4 && ans2 == 1)
-		//	show<ListPriorQueue<Pair<Circle>>>(ans1);
+		else if (ans1 == 3 && ans2 == 1)
+			show_line<ListPriorQueue<Pair<Line>>>();
+		else if (ans1 == 4 && ans2 == 1)
+			show_circle<ListPriorQueue<Pair<Circle>>>();
 		else if (ans1 == 1 && ans2 == 2)
 			show_int<VectorPriorQueue<Pair<int>>>();
 		else if (ans1 == 2 && ans2 == 2)
 			show_string<VectorPriorQueue<Pair<std::string>>>();
-		//else if (ans1 == 3 && ans2 == 2)
-		//	show<VectorPriorQueue<Pair<Line>>>(ans1);
-		//else if (ans1 == 4 && ans2 == 2)
-		//	show<VectorPriorQueue<Pair<Circle>>>(ans1);
+		else if (ans1 == 3 && ans2 == 2)
+			show_line<VectorPriorQueue<Pair<Line>>>();
+		else if (ans1 == 4 && ans2 == 2)
+			show_circle<VectorPriorQueue<Pair<Circle>>>();
 		else if (ans1 == 1 && ans2 == 3)
 			show_int<TreePriorQueue<Pair<int>>>();
 		else if (ans1 == 2 && ans2 == 3)
 			show_string<TreePriorQueue<Pair<std::string>>>();
-		//else if (ans1 == 3 && ans2 == 3)
-		//	show<TreePriorQueue<Pair<Line>>>(ans1);
-		//else if (ans1 == 4 && ans2 == 3)
-		//	show<TreePriorQueue<Pair<Circle>>>(ans1);
+		else if (ans1 == 3 && ans2 == 3)
+			show_line<TreePriorQueue<Pair<Line>>>();
+		else if (ans1 == 4 && ans2 == 3)
+			show_circle<TreePriorQueue<Pair<Circle>>>();
 		else {
 
 		}
