@@ -52,6 +52,12 @@ std::vector<Pair<double, double>> Circle::intersection(const Line& to_find) {
 	return intersectionPoints;
 }
 
+std::vector<Pair<double, double>> Circle::intersection(const Circle& to_find) {
+	double x1 = center.getVal(), y1 = center.getPrior(), x2 = to_find.center.getVal(), y2 = to_find.center.getPrior();
+	return intersection(Line(-2 * x2, -2 * y2, x2 * x2 + y2 * y2 + radius * radius - to_find.radius * to_find.radius));
+
+}
+
 /*!
 Symmetry of the circle relatively to the Line, will be a Circle with the same radius but with the center in the symmetrical to the old center point.
 */
@@ -127,8 +133,12 @@ Line Circle::inverse(const Circle& baseCircle) {
 	return Line();
 }
 
-bool Circle::operator==(const Circle& to_compare) {
+bool Circle::operator==(const Circle& to_compare) const {
 	return (center == to_compare.center && radius == to_compare.radius) ? true : false;
+}
+
+bool Circle::operator!=(const Circle& to_compare) const {
+	return (center != to_compare.center || radius != to_compare.radius) ? true : false;
 }
 
 bool Circle::centerBelongToCircle(const Circle& to_check) {
@@ -136,3 +146,6 @@ bool Circle::centerBelongToCircle(const Circle& to_check) {
 	return ((x0 - x) * (x0 - x) + (y0 - y) * (y0 - y) == radius * radius) ? true : false;
 }
 
+void Circle::out() {
+	std::cout << "(x - " << center.getVal() << ")^2 + (y - " << center.getPrior() << ")^2 = " << radius << "^2";
+}

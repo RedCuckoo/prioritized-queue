@@ -27,6 +27,12 @@ private:
 	friend class Circle;
 
 	/*!
+	\brief Friended operator<<
+	\details Allows to output information with the stream
+	*/
+	friend std::ostream& operator<<(std::ostream& out, const Line& to_out);
+
+	/*!
 	\brief Friended function of the finding symmetric point
 	\details Function findSymmetricDot(const Line&, const Pair<double, double>) gets access to the private field of the Line, because it need to use it in the function, when accepting it as a parameter.
 	*/
@@ -52,6 +58,8 @@ public:
 	\details Create a Line from two points.
 	*/
 	Line(Pair<double, double>, Pair<double, double>);
+
+	Line(const Line& to_copy) : a(to_copy.a), b(to_copy.b), c(to_copy.c) {		}
 	
 	/*!
 	\brief Intersect current Line with a provided Circle
@@ -60,6 +68,8 @@ public:
 	\return 
 	*/
 	std::vector<Pair<double, double>> intersection(const Circle& to_find);
+
+	Pair<double, double> intersection(const Line& to_find);
 
 	/*!
 	\brief Symmetrical reflection of the object over given Line
@@ -74,7 +84,18 @@ public:
 	\return A newly formed Circle. Circle() is returned, if the center of base Circle is laying on the Line.
 	*/
 	Circle inverse(const Circle& baseCircle);
+
+	void out();
+
+	//Line& operator=(const Line& to_compare);
+	bool operator==(const Line& to_compare) const;
+	bool operator!=(const Line& to_compare) const;
 };
 
+inline std::ostream& operator<<(std::ostream& out_stream, const Line& to_out) {
+
+	std::cout << to_out.a << " * x + " << to_out.b << " * y + " << to_out.c << " = 0";
+	return out_stream;
+}
 #endif // !LINE_H
 

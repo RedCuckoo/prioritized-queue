@@ -38,6 +38,12 @@ private:
 	friend class Line;
 
 	/*!
+	\brief Friended operator<<
+	\details Allows to output information with the stream
+	*/
+	friend std::ostream& operator<<(std::ostream& out, const Circle& to_out);
+
+	/*!
 	\brief Friended function of the inverse of the point
 	\details Function inversePoint(Pair<double, double>&, const Circle&) gets access to the private field of the Circle
 	*/
@@ -66,6 +72,8 @@ public:
 	*/
 	std::vector<Pair<double, double>> intersection(const Line& to_find);
 	
+	std::vector<Pair<double, double>> intersection(const Circle& to_find);
+
 	/*!
 	\brief Reflect circle over the Line
 	\details A symmetrical reflection of the Circle relatively to the provided Line
@@ -87,8 +95,18 @@ public:
 	\param [in] to_compare A constant reference to the Circle which has to be compared with current
 	\return True value if they are equal and false value otherwise
 	*/
-	bool operator== (const Circle& to_compare);
+	bool operator== (const Circle& to_compare) const;
+	bool operator!= (const Circle& to_compare) const;
+
+	void out();
+	
+	
 };
 
+inline std::ostream& operator<<(std::ostream& out_stream, const Circle& to_out) {
+
+	std::cout << "(" << to_out.center.getVal() << ", " << to_out.center.getPrior() << "), radius = " << to_out.radius;// << " = 0";
+	return out_stream;
+}
 
 #endif // !CIRCLE_H
