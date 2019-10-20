@@ -21,10 +21,13 @@ public:
 	void pop();
 };
 
+/*!
+\brief Remove front element
+\details This method removes the front value in the queue
+*/
 template<class value_type>
 void VectorPriorQueue<value_type>::pop() {
 	QueueBase<std::vector<value_type>, value_type>::container.pop_back();
 }
-
 
 #endif // !VECTORPRIORQUEUE_H

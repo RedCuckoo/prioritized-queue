@@ -1,9 +1,32 @@
+/*!
+	\file
+	\brief C++ file containing class Circle
+
+	This file contains implementation of such figure as Circle
+*/
+
 #include "Circle.h"
 #include "Pair.h"
 #include <vector>
 #include "Math.h"
 
 /*!
+\brief Center belonging check
+\details Check whether or not the center of the given Circle, lays on the current one
+\param [in] to_check A constant reference to the Circle which has to be checked
+\return True value if center of to_check lays on the current Circle and false value otherwise
+*/
+bool Circle::centerBelongToCircle(const Circle& to_check) {
+	double x0 = to_check.center.getVal(), y0 = to_check.center.getPrior(), x = center.getVal(), y = center.getPrior();
+	return ((x0 - x) * (x0 - x) + (y0 - y) * (y0 - y) == radius * radius) ? true : false;
+}
+
+/*!
+\brief Searches points of intersection
+\details Looks for the points of intersection of the current circle and given line
+\param [in] to_find A constant reference to the Line, which intersection with the other one has to be found
+\return As the result of the search, returns a vector of none, one or two Pairs
+
 In case of coeficient near y not equal to 0, the function will rewrite the equation to the slope form ( y = k*x + l).
 Then, we can substitute y in the equation of the circle ( (x-x0)^2 + (y-y0)^2 = r^2 ).
 As the result, we'll need to solve the following kvadratic equation: ( k^2 + 1 ) * x^2 + 2 * ( k * (l - y0) - x0 ) * x + x0^2 + l * ( l - 2 * y0) + y0^2 - r^2.
@@ -52,13 +75,24 @@ std::vector<Pair<double, double>> Circle::intersection(const Line& to_find) {
 	return intersectionPoints;
 }
 
+/*!
+\brief Searches points of intersection
+\details Looks for the points of intersection of the current circle and a given one
+\param [in] to_find A constant reference to the Line, which intersects with the other one has to be found
+\return As the result of the search, returns a vector of none, one or two Pairs
+
+Using some formulas the task converts to finding the intersection of the circle with the line;
+*/
 std::vector<Pair<double, double>> Circle::intersection(const Circle& to_find) {
 	double x1 = center.getVal(), y1 = center.getPrior(), x2 = to_find.center.getVal(), y2 = to_find.center.getPrior();
 	return intersection(Line(-2 * x2, -2 * y2, x2 * x2 + y2 * y2 + radius * radius - to_find.radius * to_find.radius));
-
 }
 
 /*!
+\brief Reflect circle over the Line
+\details A symmetrical reflection of the Circle relatively to the provided Line
+\param [in] baseLine A constant refrence to the Line, relatively to which we have to do everything
+
 Symmetry of the circle relatively to the Line, will be a Circle with the same radius but with the center in the symmetrical to the old center point.
 */
 void Circle::reflectOverLine(const Line& baseLine) {
@@ -66,6 +100,13 @@ void Circle::reflectOverLine(const Line& baseLine) {
 }
 
 /*!
+\brief Find the inverse of the circle
+\details The inverse of the circle can be either a Circle or a Line, depending on the input value
+\param baseCircle A constant reference to the Circle, relatively to which we have to do the inverse.
+\return If the return value is Line(), then the answer is the Circle and current Circle is already changed.
+Otherwise, the current Circle will be equal to Circle() and the inverse of the given Circle will be a Line.
+
+
 The inversion occurs over the Circle, in the way,
 that each point inverses in such point, that if P is the old point, P` - inversed, r - radius, then:
 OP * OP` = r^2.
@@ -133,19 +174,28 @@ Line Circle::inverse(const Circle& baseCircle) {
 	return Line();
 }
 
+/*!
+\brief Overloaded equality operator
+\param [in] to_compare A constant reference to the Circle which has to be compared with current
+\return True value if they are equal and false value otherwise
+*/
 bool Circle::operator==(const Circle& to_compare) const {
 	return (center == to_compare.center && radius == to_compare.radius) ? true : false;
 }
 
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the Pair that has to be compared with the Pair passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
 bool Circle::operator!=(const Circle& to_compare) const {
 	return (center != to_compare.center || radius != to_compare.radius) ? true : false;
 }
 
-bool Circle::centerBelongToCircle(const Circle& to_check) {
-	double x0 = to_check.center.getVal(), y0 = to_check.center.getPrior(), x = center.getVal(), y = center.getPrior();
-	return ((x0 - x) * (x0 - x) + (y0 - y) * (y0 - y) == radius * radius) ? true : false;
-}
-
+/*!
+\brief Output stored information
+\details Print stored fields of the Circle to the console, using <iostream> library
+*/
 void Circle::out() {
 	std::cout << "(x - " << center.getVal() << ")^2 + (y - " << center.getPrior() << ")^2 = " << radius << "^2";
 }

@@ -1,11 +1,19 @@
+/*!
+	\file
+	\brief C++ file containing class Line
+
+	This file contains implementation of such figure as Line
+*/
+
 #include "Circle.h"
 #include "Line.h"	
 #include "Pair.h"
 #include "Math.h"
 #include <vector>
 
-
 /*!
+\brief Constructor
+\details Create a Line from two points.
 \param [in] fPoint One of the points, which form a Line
 \param [in] sPoint Another of the points, which form a Line
 */
@@ -17,6 +25,11 @@ Line::Line(Pair<double, double> fPoint, Pair<double, double> sPoint) {
 }
 
 /*!
+\brief Intersect current Line with a provided Circle
+\details The function calculates points of intersection between an object of this class and a Circle.
+\param [in] to_find A Circle that this object intersects with
+\return A vector of points of intersection
+
 This function uses already defined and implemented function, from the class of Circle.
 */
 std::vector<Pair<double, double>> Line::intersection(const Circle& to_find) {
@@ -24,13 +37,21 @@ std::vector<Pair<double, double>> Line::intersection(const Circle& to_find) {
 	return copy.intersection(*this);
 }
 
-Pair<double, double> Line::intersection(const Line& to_find) {
+/*!
+\brief Intersect current Line with a provided Line
+\details The function calculates points of intersection between an object of this class and a Line.
+\param [in] to_find A Line that this object intersects with
+\return A vector of points of intersection
+*/
+std::vector<Pair<double, double>> Line::intersection(const Line& to_find) {
 	double a2 = to_find.a, b2 = to_find.b, c2 = to_find.c;
 	double temp = a2 * b - a * b2;
-	Pair<double, double> ans;
+	std::vector<Pair<double, double>> ans;
+	Pair<double, double> temp_pair;
 	if (temp && b) {
-		ans.setVal((c * b2 - c2 * b) / temp);
-		ans.setPrior((-a / b)* ans.getVal() - c / b);
+		temp_pair.setVal((c * b2 - c2 * b) / temp);
+		temp_pair.setPrior((-a / b)* temp_pair.getVal() - c / b);
+		ans.push_back(temp_pair);
 	}
 	else if (!b && !b2) {
 
@@ -41,8 +62,9 @@ Pair<double, double> Line::intersection(const Line& to_find) {
 	else if (temp && a) {
 		//b == 0
 		//b2 !=0
-		ans.setVal(-c / a);
-		ans.setPrior((-a2 / b2) * ans.getVal() - c2 / b2);
+		temp_pair.setVal(-c / a);
+		temp_pair.setPrior((-a2 / b2) * temp_pair.getVal() - c2 / b2);
+		ans.push_back(temp_pair);
 	}
 	else{
 	}
@@ -50,14 +72,16 @@ Pair<double, double> Line::intersection(const Line& to_find) {
 }
 
 /*!
+\brief Symmetrical reflection of the object over given Line
+\details Function finds a Line which is a symmetrical to the object over the given Line
+\param baseLine The Line over which the symmetrical object is being calculated
+
 The function checks, if the lines aren't in the form of x = const.
 If they are not, the function will find the intersection points, choose a point which is not on the intersection and return a Line out of two points.
 Also some trivial cases are included to prevent division on 0.
 */
-
-
 void Line::reflectOverLine(const Line& baseLine) {
-	Pair<double, double> inter = intersection(baseLine);
+	Pair<double, double> inter = intersection(baseLine)[0];
 	if (inter != Pair<double, double>()) {
 		//if they aren't paralel
 		Pair<double, double> temp = inter;
@@ -82,53 +106,11 @@ void Line::reflectOverLine(const Line& baseLine) {
 	}
 }
 
-
-//void Line::reflectOverLine(const Line& baseLine) {
-//	double a2 = baseLine.a, b2 = baseLine.b, c2 = baseLine.c;
-//	if (b2 && b) {
-//		double x0, y0, xs, ys;
-//		
-//		if (!a && !a2) {
-//			x0 = 0;
-//		}
-//		else {
-//			x0 = (c * b2 - c2 * b) / (a2 * b - a * b2);
-//		}
-//
-//		y0 = (-a / b) * x0 - c / b;
-//		Pair<double, double> symetricNew = findSymmetricDot(baseLine, Pair<double, double>(x0 + 1, (-a / b) * x0 - c / b));
-//		
-//		xs = symetricNew.getVal();
-//		ys = symetricNew.getPrior();
-//		
-//		if (!a && !a2) {
-//			symetricNew = findSymmetricDot(baseLine, Pair<double, double>(x0, y0));
-//			x0 = symetricNew.getVal();
-//			y0 = symetricNew.getPrior();
-//		}
-//
-//		a = y0 - ys;
-//		b = xs - x0;
-//		c = x0 * ys - xs * y0;
-//	}
-//	else if (b && !b2) {
-//		b = -b;
-//	}
-//	else if (b2 && !b) {
-//		b = a;
-//		a = 0;
-//	}
-//	else {
-//		//!b && !b2
-//		if (a && a2) {
-//			Pair<double, double> symmetricNew = findSymmetricDot(baseLine, Pair<double, double>(-c / a, 0));
-//			a = 1;
-//			c = -symmetricNew.getVal();
-//		}
-//	}
-//}
-
 /*!
+\brief Inverse of a Line
+\param [in] baseCircle A Circle of inversion
+\return A newly formed Circle. Circle() is returned, if the center of base Circle is laying on the Line.
+
 If the center of the base Circle doesn't lay on the Line, the inversion of the Line will be a Circle.
 The center of the base Circle will lay on the newly formed Circle. 
 
@@ -145,22 +127,29 @@ Circle Line::inverse(const Circle& baseCircle) {
 	return Circle((x0 + diamPoint.getVal()) / 2, (y0 + diamPoint.getPrior()) / 2, sqrt((diamPoint.getVal() - x0) * (diamPoint.getVal() - x0) + (diamPoint.getPrior() - y0) * (diamPoint.getPrior() - y0)) / 2);
 }
 
+/*!
+\brief Output stored information
+\details Print stored fields of the Line to the console, using <iostream> library
+*/
 void Line::out() {
 	std::cout << a << " * x + " << b << " * y + " << c << " = 0";
 }
 
+/*!
+\brief Overloaded equality operator
+\param to_compare Const reference to the Line that has to be compared with the Line passed as an lvalue
+\return True value if they are equal and false value otherwise
+*/
 bool Line::operator==(const Line& to_compare) const{
 	double a1 = to_compare.a, b1 = to_compare.b, c1 = to_compare.c;
 	return (a == a1 && b == b1 && c == c1) ? true : false;
 }
 
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the Line that has to be compared with the Line passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
 bool Line::operator!=(const Line& to_compare) const{
 	return (*this == to_compare) ? false : true;
 }
-
-//Line& Line::operator=(const Line& to_compare) {
-//	a = to_compare.a;
-//	b = to_compare.b;
-//	c = to_compare.c;
-//	return *this;
-//}

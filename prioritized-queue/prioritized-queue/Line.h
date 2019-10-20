@@ -53,49 +53,31 @@ public:
 	*/
 	Line(double a_coef, double b_coef, double c_coef) : a(a_coef), b(b_coef), c(c_coef) {		}
 	
-	/*!
-	\brief Constructor
-	\details Create a Line from two points.
-	*/
 	Line(Pair<double, double>, Pair<double, double>);
-
 	Line(const Line& to_copy) : a(to_copy.a), b(to_copy.b), c(to_copy.c) {		}
-	
-	/*!
-	\brief Intersect current Line with a provided Circle
-	\details The function calculates points of intersection between an object of this class and a Circle.
-	\param [in] to_find A Circle that this object intersects with
-	\return 
-	*/
+
 	std::vector<Pair<double, double>> intersection(const Circle& to_find);
-
-	Pair<double, double> intersection(const Line& to_find);
-
-	/*!
-	\brief Symmetrical reflection of the object over given Line
-	\details Function finds a Line which is a symmetrical to the object over the given Line
-	\param baseLine The Line over which the symmetrical object is being calculated
-	*/
+	std::vector<Pair<double, double>> intersection(const Line& to_find);
 	void reflectOverLine(const Line& baseLine);
-
-	/*!
-	\brief Inverse of a Line
-	\param [in] baseCircle A Circle of inversion
-	\return A newly formed Circle. Circle() is returned, if the center of base Circle is laying on the Line.
-	*/
 	Circle inverse(const Circle& baseCircle);
 
-	void out();
-
-	//Line& operator=(const Line& to_compare);
 	bool operator==(const Line& to_compare) const;
 	bool operator!=(const Line& to_compare) const;
+
+	void out();
 };
 
+/*!
+\brief Operator<<
+\detail Allows to output information with the stream
+\param out Stream which is defined automatically, has to be ostream or inherited streams
+\param to_out This parameter is passed on the right of "<<", not changeble, the reference to the Line that has to be outputted
+\return Reference to the ostream, to allow continous streaming
+*/
 inline std::ostream& operator<<(std::ostream& out_stream, const Line& to_out) {
-
 	std::cout << to_out.a << " * x + " << to_out.b << " * y + " << to_out.c << " = 0";
 	return out_stream;
 }
+
 #endif // !LINE_H
 

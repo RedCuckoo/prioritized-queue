@@ -1,3 +1,8 @@
+/*!
+	\file
+	\brief C++ file containing implementations of Math.h
+*/
+
 #include "Math.h"
 #include "Line.h"
 #include "Circle.h"

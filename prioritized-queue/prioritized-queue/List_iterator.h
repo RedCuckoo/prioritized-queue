@@ -1,3 +1,10 @@
+/*!
+	\file
+	\brief Header file containing class List_iterator
+
+	This file contains template definition and implementation of an iterator for such data structure as a double linked list.
+*/
+
 #ifndef LIST_ITERATOR_H
 #define LIST_ITERATOR_H
 
@@ -27,12 +34,6 @@ class List_iterator {
 
 	List<value_type>* list;
 	typename List<value_type>::Node* node;
-
-	/*!
-	\brief Overloaded arrow dereference operator
-	\details It is private, for convinient implementations of methods only
-	\return A gives access to the elelments of the node, to which current iterator is pointing to
-	*/
 	typename List<value_type>::Node* operator->() const;
 public:
 	/*!
@@ -55,72 +56,31 @@ public:
 	*/
 	List_iterator(const List_iterator& to_copy) : list(to_copy.list), node(to_copy.node) {	}
 
-	/*!
-	\brief Overloaded left increment operator
-	\return A reference to the iterator, pointing to the next element
-	*/
 	List_iterator& operator++();
-
-	/*!
-	\brief Overloaded right increment operator
-	\return An iterator, pointing to the next element
-	*/
 	List_iterator operator++(int);
-
-	/*!
-	\brief Overloaded left decrement operator
-	\return A reference to the iterator, pointing to the previous element
-	*/
 	List_iterator& operator--();
-
-	/*!
-	\brief Overloaded right decrement operator
-	\return A reference to the iterator, pointing to the previous
-	*/
 	List_iterator operator--(int);
-
-	/*!
-	\brief Overloaded summing operator, shifts iterator to the left or right relatively of the parameter
-	\param val If this parameter is >0 then it iterator shifts to the right, else - to the left
-	\return A reference to the iterator, pointing to the next or previous element
-	*/
 	List_iterator& operator+(int val);
-
-	/*!
-	\brief Overloaded suntracting operator, shifts iterator to the left or right relatively of the parameter
-	\param val If this parameter is >0 then it iterator shifts to the left, else - to the right
-	\return A reference to the iterator, pointing to the next or previous element
-	*/
 	List_iterator& operator-(int val);
-
-	/*!
-	\brief Overloaded equality operator
-	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
-	\return True value if they are equal and false value otherwise
-	*/
 	bool operator== (const List_iterator& to_compare) const;
-
-	/*!
-	\brief Overloaded inequality operator
-	\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
-	\return True value if they are unequal and false value otherwise
-	*/
 	bool operator!= (const List_iterator& to_compare) const;
-
-	/*!
-	\brief Overloaded dereference operator
-	\return A value (of the type value_type) that is stored in the node of the list that current iterator is pointing to
-	*/
 	value_type& operator*() const;
-
 };
 
+/*!
+\brief Overloaded left increment operator
+\return A reference to the iterator, pointing to the next element
+*/
 template <class value_type>
 List_iterator<value_type>& List_iterator<value_type>::operator++() {
 	node = node->next;
 	return *this;
 }
 
+/*!
+\brief Overloaded right increment operator
+\return An iterator, pointing to the next element
+*/
 template <class value_type>
 List_iterator<value_type> List_iterator<value_type>::operator++(int) {
 	List_iterator result = *this;
@@ -128,13 +88,20 @@ List_iterator<value_type> List_iterator<value_type>::operator++(int) {
 	return result;
 }
 
+/*!
+\brief Overloaded left decrement operator
+\return A reference to the iterator, pointing to the previous element
+*/
 template <class value_type>
 List_iterator<value_type>& List_iterator<value_type>::operator--() {
 	node = node->prev;
 	return *this;
 }
 
-
+/*!
+\brief Overloaded right decrement operator
+\return A reference to the iterator, pointing to the previous
+*/
 template <class value_type>
 List_iterator<value_type> List_iterator<value_type>::operator--(int) {
 	List_iterator result = *this;
@@ -142,6 +109,11 @@ List_iterator<value_type> List_iterator<value_type>::operator--(int) {
 	return result;
 }
 
+/*!
+\brief Overloaded summing operator, shifts iterator to the left or right relatively of the parameter
+\param val If this parameter is >0 then it iterator shifts to the right, else - to the left
+\return A reference to the iterator, pointing to the next or previous element
+*/
 template <class value_type>
 List_iterator<value_type>& List_iterator<value_type>::operator+(int val) {
 	if (val > 0) {
@@ -160,6 +132,11 @@ List_iterator<value_type>& List_iterator<value_type>::operator+(int val) {
 	return *this;
 }
 
+/*!
+\brief Overloaded suntracting operator, shifts iterator to the left or right relatively of the parameter
+\param val If this parameter is >0 then it iterator shifts to the left, else - to the right
+\return A reference to the iterator, pointing to the next or previous element
+*/
 template <class value_type>
 List_iterator<value_type>& List_iterator<value_type>::operator-(int val) {
 	if (val > 0) {
@@ -178,21 +155,40 @@ List_iterator<value_type>& List_iterator<value_type>::operator-(int val) {
 	return *this;
 }
 
+/*!
+\brief Overloaded equality operator
+\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
+\return True value if they are equal and false value otherwise
+*/
 template <class value_type>
 bool List_iterator<value_type>::operator== (const List_iterator& to_compare) const {
 	return (list == to_compare.list && node == to_compare.node);
 }
 
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the List_iterator that has to be compared with the List_Iterator passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
 template <class value_type>
 bool List_iterator<value_type>::operator!= (const List_iterator& to_compare) const {
 	return (list != to_compare.list || node != to_compare.node);
 }
 
+/*!
+\brief Overloaded dereference operator
+\return A value (of the type value_type) that is stored in the node of the list that current iterator is pointing to
+*/
 template <class value_type>
 value_type& List_iterator<value_type>::operator*() const {
 	return node->value;
 }
 
+/*!
+\brief Overloaded arrow dereference operator
+\details It is private, for convinient implementations of methods only
+\return A gives access to the elelments of the node, to which current iterator is pointing to
+*/
 template <class value_type>
 typename List<value_type>::Node* List_iterator<value_type>::operator->() const {
 	return node;

@@ -1,6 +1,6 @@
 /*!
 	\file
-	\brief Header file containing class List and class List_iterator
+	\brief Header file containing class List
 
 	This file contains template definition and implementation of such data structure as a double linked list
 */
@@ -27,44 +27,14 @@ private:
 	*/
 	struct Node {
 	public:
-		//TODO: while refactoring make sure that it's better to store node values in a public rather than private field
 		value_type value;
 		Node* next, * prev;
 		bool type = 1;
 
-		/*!
-		\brief Constructor
-		\details Constructor which creates an empty node, which is used as the end of the list (iterator on the end of the list)
-		*/
 		Node();
-
-		/*!
-		\brief Constructor
-		\details Constructor which creates a node from the provided parameters.
-		\param[in] val The value that node will store
-		\param[in] pr Pointer to the previous node (for the beginning of the list, nullptr is passed)
-		\param[in] ne Pointer to the next node (for the end of the list, pointer to an empty node is passed)
-		*/
 		Node(value_type val, Node* pr, Node* ne);
-
-		/*!
-		\brief Output stored information
-		\details Print stored value of the node to the console, using <iostream> library
-		*/
 		void out();
-
-		/*!
-		\brief Overloaded equality operator
-		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
-		\return True value if they are equal and false value otherwise
-		*/
 		bool operator==(const Node& to_compare) const;
-
-		/*!
-		\brief Overloaded inequality operator
-		\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
-		\return True value if they are unequal and false value otherwise
-		*/
 		bool operator!=(const Node& to_compare) const;
 	};
 
@@ -78,79 +48,22 @@ private:
 	friend class List_iterator;
 
 public:
-	/*!
-	\brief Get iterator on the beginning
-	\details Method that returns the iterator to the beginning of the list
-	\return Iterator to the beginning of the list
-	*/
 	List_iterator<value_type> begin();
-
-	/*!
-	\brief Get iterator on the end
-	\details Method that returns the iterator to the end of the list
-	\return Iterator to the end of the list
-	*/
 	List_iterator<value_type> end();
-
-	/*!
-	\brief Constructor
-	\details Default construct which creates a List object with no elements in it
-	*/
 	List();
-
-	/*!
-	\brief Checks emptiness of the list
-	\details This method checks whether or not current list is empty
-	\return True value if the list is empty and false value otherwise
-	*/
 	bool empty();
-
-	/*!
-	\brief Get the size of the list
-	\details To get the amount of elements of the list
-	\return Size of the list
-	*/
 	unsigned int size();
-	
-	/*!
-	\brief Add elements
-	\details Add elements to the end of the list
-	\param[in] val Value which has to be added to the list
-	*/
 	void push_back(value_type val);
-
-	/*!
-	\brief Insert elelment
-	\details Insert an element in the iterated position in the list
-	\param[in] it Iterator to the position where the element has to be inserted
-	\param[in] to_insert Reference to the element which has to be inserted
-	\return A valid iterator to the same value that passed parameter was pointing to
-	*/
 	List_iterator<value_type> insert(const List_iterator<value_type>& it, const value_type& to_insert);
-	
-	/*!
-	\brief Erase element
-	\details Erases element on the iterated position in the list
-	\param[in] it Iterator to the position where the element has to be erased
-	\return A valid iterator to the same position that passed parameter was pointing to
-	*/
 	List_iterator<value_type> erase(List_iterator<value_type> it);
-	
-	/*!
-	\brief Overloaded equality operator
-	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
-	\return True value if they are equal and false value otherwise
-	*/
-	bool operator==(List& to_compare);
-	
-	/*!
-	\brief Overloaded inequality operator
-	\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
-	\return True value if they are unequal and false value otherwise
-	*/
-	bool operator!=(List& to_compare);
+	bool operator==(List<value_type>& to_compare);
+	bool operator!=(List<value_type>& to_compare);
 };
 
+/*!
+\brief Constructor
+\details Constructor which creates an empty node, which is used as the end of the list (iterator on the end of the list)
+*/
 template <class value_type>
 List<value_type>::Node::Node() {
 	type = 0;
@@ -158,6 +71,13 @@ List<value_type>::Node::Node() {
 	prev = nullptr;
 }
 
+/*!
+\brief Constructor
+\details Constructor which creates a node from the provided parameters.
+\param[in] val The value that node will store
+\param[in] pr Pointer to the previous node (for the beginning of the list, nullptr is passed)
+\param[in] ne Pointer to the next node (for the end of the list, pointer to an empty node is passed)
+*/
 template <class value_type>
 List<value_type>::Node::Node(value_type val, Node* pr, Node* ne) {
 	value = val;
@@ -165,42 +85,80 @@ List<value_type>::Node::Node(value_type val, Node* pr, Node* ne) {
 	next = ne;
 }
 
+/*!
+\brief Output stored information
+\details Print stored value of the node to the console, using <iostream> library
+*/
 template <class value_type>
 void List<value_type>::Node::out() {
 	std::cout << value << std::endl;
 }
 
+/*!
+\brief Overloaded equality operator
+\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
+\return True value if they are equal and false value otherwise
+*/
 template <class value_type>
 bool List<value_type>::Node::operator==(const Node& to_compare) const {
 	return (type == to_compare.type && value == to_compare.value && next == to_compare.next && prev == to_compare.prev) ? true : false;
 }
 
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the node that has to be compared with the node passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
 template <class value_type>
 bool List<value_type>::Node::operator!=(const Node& to_compare) const {
 	return (type != to_compare.type || value != to_compare.value || next != to_compare.next || prev != to_compare.prev) ? true : false;
 }
 
+/*!
+\brief Get iterator on the beginning
+\details Method that returns the iterator to the beginning of the list
+\return Iterator to the beginning of the list
+*/
 template <class value_type>
 List_iterator<value_type> List<value_type>::begin() {
 	return List_iterator<value_type>(this, head);
 }
 
+/*!
+\brief Get iterator on the end
+\details Method that returns the iterator to the end of the list
+\return Iterator to the end of the list
+*/
 template <class value_type>
 List_iterator<value_type> List<value_type>::end() {
 	return List_iterator<value_type>(this, tail);
 }
 
+/*!
+\brief Constructor
+\details Default construct which creates a List object with no elements in it
+*/
 template <class value_type>
 List<value_type>::List() {
 	head = new Node();
 	tail = head;
 }
 
+/*!
+\brief Checks emptiness of the list
+\details This method checks whether or not current list is empty
+\return True value if the list is empty and false value otherwise
+*/
 template <class value_type>
 bool List<value_type>::empty() {
 	return (head == tail) ? true : false;
 }
 
+/*!
+\brief Get the size of the list
+\details To get the amount of elements of the list
+\return Size of the list
+*/
 template <class value_type>
 unsigned int List<value_type>::size() {
 	Node* temp = head;
@@ -212,6 +170,11 @@ unsigned int List<value_type>::size() {
 	return size;
 }
 
+/*!
+\brief Add elements
+\details Add elements to the end of the list
+\param[in] val Value which has to be added to the list
+*/
 template <class value_type>
 void List<value_type>::push_back(value_type val) {
 	if (head == tail) {
@@ -224,6 +187,12 @@ void List<value_type>::push_back(value_type val) {
 }
 
 /*!
+\brief Insert elelment
+\details Insert an element in the iterated position in the list
+\param[in] it Iterator to the position where the element has to be inserted
+\param[in] to_insert Reference to the element which has to be inserted
+\return A valid iterator to the same value that passed parameter was pointing to
+
 The value is interted on the left of the iterator.
 \code
 //If we are given the following sequence with the iterator to the second element
@@ -254,6 +223,11 @@ List_iterator<value_type> List<value_type>::insert(const List_iterator<value_typ
 }
 
 /*!
+\brief Erase element
+\details Erases element on the iterated position in the list
+\param[in] it Iterator to the position where the element has to be erased
+\return A valid iterator to the same position that passed parameter was pointing to
+
 The value is erased, making the iterator invalid.
 \code
 //If we are given the following sequence with the iterator to the second element
@@ -286,8 +260,13 @@ List_iterator<value_type> List<value_type>::erase(List_iterator<value_type> it) 
 	return it;
 }
 
+/*!
+\brief Overloaded equality operator
+\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
+\return True value if they are equal and false value otherwise
+*/
 template <class value_type>
-bool List<value_type>::operator==(List& to_compare) {
+bool List<value_type>::operator==(List<value_type>& to_compare) {
 	Node* temp1 = head;
 	Node* temp2 = to_compare;
 
@@ -303,8 +282,13 @@ bool List<value_type>::operator==(List& to_compare) {
 	return (temp1 == temp2) ? true : false;
 }
 
+/*!
+\brief Overloaded inequality operator
+\param to_compare Const reference to the list that has to be compared with the list passed as an lvalue
+\return True value if they are unequal and false value otherwise
+*/
 template <class value_type>
-bool List<value_type>::operator!=(List& to_compare) {
+bool List<value_type>::operator!=(List<value_type>& to_compare) {
 	return (*this == to_compare) ? false : true;
 }
 

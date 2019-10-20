@@ -1,3 +1,8 @@
+/*!
+	\file
+	\brief Header file containing definitions of some mathemetical functions
+*/
+
 #ifndef MATH_H
 #define MATH_H
 
