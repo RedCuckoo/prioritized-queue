@@ -40,12 +40,12 @@ public:
 	priority_type getPrior() const;
 	void setPrior(const value_type& pr);
 
-	bool operator>(const Pair& to_compare) const;
-	bool operator>=(const Pair& to_compare) const;
-	bool operator<(const Pair& to_compare) const;
-	bool operator<=(const Pair& to_compare) const;
-	bool operator==(const Pair& to_compare) const;
-	bool operator!=(const Pair& to_compare) const;
+	bool operator>(const Pair<value_type, priority_type>& to_compare) const;
+	bool operator>=(const Pair<value_type, priority_type>& to_compare) const;
+	bool operator<(const Pair<value_type, priority_type>& to_compare) const;
+	bool operator<=(const Pair<value_type, priority_type>& to_compare) const;
+	bool operator==(const Pair<value_type, priority_type>& to_compare) const;
+	bool operator!=(const Pair<value_type, priority_type>& to_compare) const;
 
 	void out();
 };
@@ -104,7 +104,7 @@ void Pair<value_type, priority_type>::setPrior(const value_type& pr) {
 \return True value if current Pair is bigger than to_compare and false value otherwise
 */
 template<class value_type, class priority_type>
-bool Pair<value_type, priority_type>::operator>(const Pair& to_compare) const {
+bool Pair<value_type, priority_type>::operator>(const Pair<value_type, priority_type>& to_compare) const {
 	return (priority > to_compare.getPrior()) ? true : false;
 }
 
@@ -114,7 +114,7 @@ bool Pair<value_type, priority_type>::operator>(const Pair& to_compare) const {
 \return True value if current Pair is bigger or equal than to_compare and false value otherwise
 */
 template<class value_type, class priority_type>
-bool Pair<value_type, priority_type>::operator>=(const Pair& to_compare) const {
+bool Pair<value_type, priority_type>::operator>=(const Pair<value_type, priority_type>& to_compare) const {
 	return (priority >= to_compare.getPrior()) ? true : false;
 }
 
@@ -134,7 +134,7 @@ bool Pair<value_type, priority_type>::operator<(const Pair& to_compare) const {
 \return True value if current Pair is less or equal than to_compare and false value otherwise
 */
 template<class value_type, class priority_type>
-bool Pair<value_type, priority_type>::operator<=(const Pair& to_compare) const {
+bool Pair<value_type, priority_type>::operator<=(const Pair<value_type, priority_type>& to_compare) const {
 	return (priority <= to_compare.getPrior()) ? true : false;
 }
 
@@ -144,7 +144,7 @@ bool Pair<value_type, priority_type>::operator<=(const Pair& to_compare) const {
 \return True value if they are equal and false value otherwise
 */
 template<class value_type, class priority_type>
-bool Pair<value_type, priority_type>::operator==(const Pair& to_compare) const {
+bool Pair<value_type, priority_type>::operator==(const Pair<value_type, priority_type>& to_compare) const {
 	return (priority == to_compare.getPrior() && value == to_compare.getVal()) ? true : false;
 }
 
@@ -154,7 +154,7 @@ bool Pair<value_type, priority_type>::operator==(const Pair& to_compare) const {
 \return True value if they are unequal and false value otherwise
 */
 template<class value_type, class priority_type>
-bool Pair<value_type, priority_type>::operator!=(const Pair& to_compare) const {
+bool Pair<value_type, priority_type>::operator!=(const Pair<value_type, priority_type>& to_compare) const {
 	return (priority != to_compare.getPrior() || value == to_compare.getVal()) ? true : false;
 }
 
