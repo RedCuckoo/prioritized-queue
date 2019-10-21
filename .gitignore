@@ -402,7 +402,3 @@ latex/
 /docbook
 /perlmod
 
-#Visual Studio
-
-*.vcxproj
-*.vcxproj.filters
