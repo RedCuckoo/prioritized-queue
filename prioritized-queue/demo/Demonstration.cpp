@@ -4,12 +4,12 @@
 */
 
 #include "Demonstration.h"
-#include "Circle.h"
-#include "Line.h"
-#include "Pair.h"
-#include "ListPriorQueue.h"
-#include "VectorPriorQueue.h"
-#include "TreePriorQueue.h"
+#include "..//figures/Circle.h"
+#include "..//figures/Line.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
+#include "..//priority_queue_data_structure/ListPriorQueue.h"
+#include "..//priority_queue_data_structure/VectorPriorQueue.h"
+#include "..//priority_queue_data_structure/TreePriorQueue.h"
 #include <iostream>
 #include <string>
 

@@ -9,7 +9,7 @@
 #define LINE_H
 
 #include "Circle.h"
-#include "Pair.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include <vector>
 
 /*!

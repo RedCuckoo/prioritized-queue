@@ -8,7 +8,7 @@
 #define TREEPRIORQUEUE_H
 
 #include "QueueBase.h"
-#include "AVLTree.h"
+#include "data_structures/AVLTree.h"
 
 /*!
 	\brief Priority queue based on the binary search tree

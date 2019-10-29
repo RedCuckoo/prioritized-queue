@@ -6,8 +6,8 @@
 */
 
 #include "Circle.h"
-#include "Pair.h"
 #include <vector>
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include "Math.h"
 
 /*!

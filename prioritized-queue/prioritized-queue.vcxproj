@@ -151,26 +151,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Circle.cpp" />
-    <ClCompile Include="Demonstration.cpp" />
-    <ClCompile Include="Line.cpp" />
-    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="demo\Demonstration.cpp" />
+    <ClCompile Include="figures\Circle.cpp" />
+    <ClCompile Include="figures\Line.cpp" />
+    <ClCompile Include="figures\Math.cpp" />
     <ClCompile Include="prioritized-queue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVLTree.h" />
-    <ClInclude Include="AVLTree_iterator.h" />
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="Demonstration.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="ListPriorQueue.h" />
-    <ClInclude Include="List_iterator.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Pair.h" />
-    <ClInclude Include="QueueBase.h" />
-    <ClInclude Include="TreePriorQueue.h" />
-    <ClInclude Include="VectorPriorQueue.h" />
+    <ClInclude Include="demo\Demonstration.h" />
+    <ClInclude Include="figures\Circle.h" />
+    <ClInclude Include="figures\Line.h" />
+    <ClInclude Include="figures\Math.h" />
+    <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree.h" />
+    <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree_iterator.h" />
+    <ClInclude Include="priority_queue_data_structure\data_structures\List.h" />
+    <ClInclude Include="priority_queue_data_structure\data_structures\List_iterator.h" />
+    <ClInclude Include="priority_queue_data_structure\data_structures\Pair.h" />
+    <ClInclude Include="priority_queue_data_structure\ListPriorQueue.h" />
+    <ClInclude Include="priority_queue_data_structure\QueueBase.h" />
+    <ClInclude Include="priority_queue_data_structure\TreePriorQueue.h" />
+    <ClInclude Include="priority_queue_data_structure\VectorPriorQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@
 #ifndef LISTPRIORQUEUE_H
 #define LISTPRIORQUEUE_H
 
-#include "List.h"
+#include "data_structures/List.h"
 #include "QueueBase.h"
 
 /*!

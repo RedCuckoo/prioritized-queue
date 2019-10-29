@@ -7,11 +7,11 @@
 #define DEMONSTRATION_H
 
 #include <iostream>
-#include "Pair.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include <vector>
 #include <string>
-#include "Line.h"
-#include "Circle.h"
+#include "..//figures/Line.h"
+#include "..//figures/Circle.h"
 
 /*!
 \brief A set of functions for demonstation

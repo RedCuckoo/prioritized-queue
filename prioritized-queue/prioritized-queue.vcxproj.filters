@@ -18,57 +18,57 @@
     <ClCompile Include="prioritized-queue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Line.cpp">
+    <ClCompile Include="figures\Circle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Circle.cpp">
+    <ClCompile Include="figures\Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
+    <ClCompile Include="figures\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Demonstration.cpp">
+    <ClCompile Include="demo\Demonstration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ListPriorQueue.h">
+    <ClInclude Include="figures\Circle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pair.h">
+    <ClInclude Include="figures\Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="List.h">
+    <ClInclude Include="figures\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VectorPriorQueue.h">
+    <ClInclude Include="priority_queue_data_structure\ListPriorQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QueueBase.h">
+    <ClInclude Include="priority_queue_data_structure\QueueBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TreePriorQueue.h">
+    <ClInclude Include="priority_queue_data_structure\TreePriorQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AVLTree.h">
+    <ClInclude Include="priority_queue_data_structure\VectorPriorQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
+    <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Circle.h">
+    <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree_iterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
+    <ClInclude Include="priority_queue_data_structure\data_structures\List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AVLTree_iterator.h">
+    <ClInclude Include="priority_queue_data_structure\data_structures\List_iterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="List_iterator.h">
+    <ClInclude Include="priority_queue_data_structure\data_structures\Pair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Demonstration.h">
+    <ClInclude Include="demo\Demonstration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,7 +8,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include "Pair.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include "Line.h"
 #include <vector>
 

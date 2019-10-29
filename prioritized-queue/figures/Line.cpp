@@ -5,11 +5,11 @@
 	This file contains implementation of such figure as Line
 */
 
-#include "Circle.h"
 #include "Line.h"	
-#include "Pair.h"
-#include "Math.h"
 #include <vector>
+#include "Circle.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
+#include "Math.h"
 
 /*!
 \brief Constructor

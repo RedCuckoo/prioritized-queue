@@ -7,7 +7,7 @@
 #define MATH_H
 
 #include <vector>
-#include "Pair.h"
+#include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include "Line.h"
 #include "Circle.h"
 

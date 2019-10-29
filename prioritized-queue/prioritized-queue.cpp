@@ -5,7 +5,7 @@
 	This file contains main function
 */
 
-#include "Demonstration.h"
+#include "demo/Demonstration.h"
 
 int main()
 {
