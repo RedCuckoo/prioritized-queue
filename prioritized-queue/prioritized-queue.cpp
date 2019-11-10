@@ -7,8 +7,7 @@
 
 #include "demo/Demonstration.h"
 
-int main()
-{
+int main(){
 	Demonstration k;
 	k.demo();
 } 

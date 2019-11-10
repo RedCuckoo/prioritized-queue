@@ -83,7 +83,7 @@ void Demonstration::get_num(value_type& data)
 */
 void Demonstration::demo() {
 	std::cout << "Welcome to the demonstration of the Lab #1\n\n";
-	std::cout << "If demonstration stopped, press Enter to continue (unless something else specified)";
+	std::cout << "If demonstration stopped, press Enter to continue (unless something else specified).\n";
 	while (true) {
 		unsigned int ans1, ans2; 
 		std::cout << "Choose which data type would you like to use:\n";

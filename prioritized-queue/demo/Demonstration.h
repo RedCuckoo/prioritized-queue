@@ -221,15 +221,15 @@ void Demonstration::show_line() {
 	cl.out(); std::cout << "\n";
 	wait();
 
-	std::cout << "\nIn order to check inversion, lets create a simple Circle: ";
+	std::cout << "\nIn order to check inversion, lets create a simple Circle:\n";
 	Circle c(randInt(20, 1), randInt(20, 1), randInt(20, 1));
 	c.out();
 	wait();
 
-	std::cout << "\nChecking intersection of second and third lines, the point of intersection is: ";
+	std::cout << "\nChecking intersection of second and third lines, the point of intersection is:\n";
 	std::vector<Pair<double, double>> temp_pair = bl.intersection(cl);
 	for (unsigned int i = 0; i < temp_pair.size(); ++i) {
-		std::cout << temp_pair[i];
+		std::cout << temp_pair[i] << '\n';
 	}
 	wait();
 
@@ -241,28 +241,28 @@ void Demonstration::show_line() {
 	wait();
 
 	std::cout << "\nTo complete a check on a symmetrical reflection over line and inversing over circle, we will do these steps twice, as these operations are reversible\n";
-	std::cout << "The result of reflecting second line over the first will be:";
+	std::cout << "The result of reflecting second line over the first will be:\n";
 	bl.reflectOverLine(al);
 	bl.out();
 	wait();
 
-	std::cout << "\nLets reflect the same line again over the previous line, we should get the previous line:";
+	std::cout << "\nLets reflect the same line again over the previous line, we should get the previous line:\n";
 	bl.reflectOverLine(al);
 	bl.out();
 	wait();
 
-	std::cout << "\nSame thing for the inversion, permorming it for the first time on the first line:";
+	std::cout << "\nSame thing for the inversion, permorming it for the first time on the first line:\n";
 	Circle cans = al.inverse(c);
 	cans.out();
 	wait();
 
-	std::cout << "\nInversing the circle and getting back the line:";
+	std::cout << "\nInversing the circle and getting back the line:\n";
 	al = cans.inverse(c);
 	al.out();
 	wait();
 
 	std::cout << "\nNow lets check the queue, assigning the first and third line priority 1, and second line priority 2\n";
-	std::cout << "Initializing queue with priority and pushing element will create the following:";
+	std::cout << "Initializing queue with priority and pushing element will create the following:\n";
 	data_structure container;
 	Pair<Line> alp = { al,1 };
 	Pair<Line> blp = { bl,2 };
@@ -273,7 +273,7 @@ void Demonstration::show_line() {
 	container.out();
 	wait();
 
-	std::cout << "Let's remove an element:";
+	std::cout << "Let's remove an element:\n";
 	if (!container.empty())
 		container.pop();
 	container.out();
@@ -358,7 +358,7 @@ void Demonstration::show_circle() {
 		ac.out();
 	wait();
 
-	std::cout << "\nInversing the circle and getting back the circle: ";
+	std::cout << "\nInversing the circle and getting back the circle:\n";
 	if (lans == Line()) {
 		ac.inverse(cc);
 	}
@@ -368,7 +368,7 @@ void Demonstration::show_circle() {
 	ac.out();
 	wait();
 
-	std::cout << "\nNow lets check the queue, assigning the first and third line priority 1, and second line priority 2\n";
+	std::cout << "\nNow lets check the queue, assigning the first and third circles priority 1, and second circle priority 2\n";
 	std::cout << "Initializing queue with priority and pushing element will create the following:\n";
 	data_structure container;
 	Pair<Circle> acp = { ac,1 };
@@ -380,7 +380,7 @@ void Demonstration::show_circle() {
 	container.out();
 	wait();
 
-	std::cout << "Let's remove an element:";
+	std::cout << "Let's remove an element:\n";
 	if (!container.empty())
 		container.pop();
 	container.out();
