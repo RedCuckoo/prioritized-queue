@@ -24,10 +24,13 @@
     <ClCompile Include="figures\Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="figures\Math.cpp">
+    <ClCompile Include="demo\Demonstration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demo\Demonstration.cpp">
+    <ClCompile Include="figures\mathematical functions\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="figures\base figure\Figure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,9 +39,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="figures\Line.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="figures\Math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="priority_queue_data_structure\ListPriorQueue.h">
@@ -69,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demo\Demonstration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="figures\mathematical functions\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="figures\base figure\Figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

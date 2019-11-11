@@ -152,16 +152,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="demo\Demonstration.cpp" />
+    <ClCompile Include="figures\base figure\Figure.cpp" />
     <ClCompile Include="figures\Circle.cpp" />
     <ClCompile Include="figures\Line.cpp" />
-    <ClCompile Include="figures\Math.cpp" />
+    <ClCompile Include="figures\mathematical functions\Math.cpp" />
     <ClCompile Include="prioritized-queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="demo\Demonstration.h" />
+    <ClInclude Include="figures\base figure\Figure.h" />
     <ClInclude Include="figures\Circle.h" />
     <ClInclude Include="figures\Line.h" />
-    <ClInclude Include="figures\Math.h" />
+    <ClInclude Include="figures\mathematical functions\Math.h" />
     <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree.h" />
     <ClInclude Include="priority_queue_data_structure\data_structures\AVLTree_iterator.h" />
     <ClInclude Include="priority_queue_data_structure\data_structures\List.h" />

@@ -9,14 +9,14 @@
 #define CIRCLE_H
 
 #include "..//priority_queue_data_structure/data_structures/Pair.h"
-#include "Line.h"
+#include "base figure/Figure.h"
 #include <vector>
 
 /*!
 \brief A figure Circle
 \details An implementation of the circle, given in a standart form: two points for center and radius
 */
-class Circle {
+class Circle : public Figure {
 private:
 	//constuructor sets radius to positive value
 	double radius;

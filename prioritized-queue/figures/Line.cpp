@@ -9,7 +9,7 @@
 #include <vector>
 #include "Circle.h"
 #include "..//priority_queue_data_structure/data_structures/Pair.h"
-#include "Math.h"
+#include "mathematical functions/Math.h"
 
 /*!
 \brief Constructor

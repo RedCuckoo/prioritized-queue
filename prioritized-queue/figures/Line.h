@@ -8,15 +8,16 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include "Circle.h"
 #include "..//priority_queue_data_structure/data_structures/Pair.h"
+#include "base figure/Figure.h"
 #include <vector>
+
 
 /*!
 \brief A figure Line
 \details An implementation of the Line, provided with an equation in a standart form: a * x + b * y + c = 0
 */
-class Line {
+class Line : public Figure{
 private:
 	double a, b, c;
 	

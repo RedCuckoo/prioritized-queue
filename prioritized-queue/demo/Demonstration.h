@@ -10,8 +10,8 @@
 #include "..//priority_queue_data_structure/data_structures/Pair.h"
 #include <vector>
 #include <string>
-#include "..//figures/Line.h"
 #include "..//figures/Circle.h"
+#include "..//figures/Line.h"
 
 /*!
 \brief A set of functions for demonstation

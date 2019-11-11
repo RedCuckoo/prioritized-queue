@@ -8,7 +8,8 @@
 #include "Circle.h"
 #include <vector>
 #include "..//priority_queue_data_structure/data_structures/Pair.h"
-#include "Math.h"
+#include "mathematical functions/Math.h"
+#include "Line.h"
 
 /*!
 \brief Center belonging check
