@@ -132,7 +132,20 @@ Circle Line::inverse(const Circle& baseCircle) {
 \details Print stored fields of the Line to the console, using <iostream> library
 */
 void Line::out() {
-	std::cout << a << " * x + " << b << " * y + " << c << " = 0";
+	double x1 = 0, y1 = ((b) ? (-c / b) : 0);
+	double x2 = ((a) ? (-c/a) : 0), y2 = 0;
+	if (a && b) {
+		std::cout << "(" << x1 << "," << y1 << ") , (" << x2 << "," <<y2<< ")";
+	}
+	else if (a) {
+		std::cout << "x = " << (-c / a);
+	}
+	else if (b){
+		std::cout << "y = " << (-c / b);
+	}
+	else {
+		std::cout << "Line isn't correct";
+	}
 }
 
 /*!
