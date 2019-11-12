@@ -45,8 +45,22 @@ class Demonstration {
 	template<class data_structure>
 	void show_circle();
 
+	template <class data_structure>
+	void do_int();
+
+	template <class data_structure>
+	void do_string();
+
+	template<class data_structure>
+	void do_line();	
+	
+	template<class data_structure>
+	void do_circle();
+
 public:
 	void demo();
+	void inter();
+
 };
 
 /*!
@@ -410,6 +424,304 @@ void Demonstration::show_circle() {
 	std::cout << "\nCurrent demonstration was successful!\n";
 	wait();
 	std::cout << "\n";
+}
+
+template<class data_structure>
+void Demonstration::do_int() {
+	data_structure container;
+	int var = 0;
+	while (true) {
+		while (var < 1 || var > 9) {
+			std::cout << "\nPlease, choose what would you like to do:\n";
+			std::cout << "1 - add element to the queue\n";
+			std::cout << "2 - remove element from the queue\n";
+			std::cout << "3 - look at the first element of the queue\n";
+			std::cout << "4 - look at the last element of the queue\n";
+			std::cout << "5 - check if the queue is empty\n";
+			std::cout << "6 - get the size of the queue\n";
+			std::cout << "7 - output the queue\n";
+			std::cout << "8 - delete queue (new one will be initialized automatically)\n";
+			std::cout << "9 - exit\n";
+			std::cout << "=> ";
+			get_num(var);
+		}
+		std::cout << '\n';
+		switch (var) {
+		case(1): {
+			int val; size_t pr;
+			std::cout << "Enter the value and its priority to be added to the queue = > ";
+			std::cin >> val >> pr;
+			container.push(Pair<int>(val, pr));
+			break;
+		}
+		case (2):
+			if (!container.empty())
+				container.pop();
+			else
+				std::cout << "The queue is already empty\n";
+			break;
+		case (3):
+			if (!container.empty())
+				std::cout << "The first element of the queue is: " << container.front();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (4):
+			
+			if (!container.empty())
+				std::cout << "The last element of the queue is: " << container.back();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (5):
+			std::cout << (bool)container.empty();
+			break;
+		case(6):
+			std::cout << container.size();
+			break;
+		case(7):
+			if (container.empty())
+				std::cout << "The queue is empty";
+			container.out();
+			break;
+		case(8):
+			while (!container.empty())
+				container.pop();
+			break;
+		case(9):
+			return;
+		default:
+			break;
+		}
+		var = 0;
+		wait();
+	}
+}
+
+template<class data_structure>
+void Demonstration::do_string() {
+	data_structure container;
+	int var = 0;
+	while (true) {
+		while (var < 1 || var > 9) {
+			std::cout << "\nPlease, choose what would you like to do:\n";
+			std::cout << "1 - add element to the queue\n";
+			std::cout << "2 - remove element from the queue\n";
+			std::cout << "3 - look at the first element of the queue\n";
+			std::cout << "4 - look at the last element of the queue\n";
+			std::cout << "5 - check if the queue is empty\n";
+			std::cout << "6 - get the size of the queue\n";
+			std::cout << "7 - output the queue\n";
+			std::cout << "8 - delete queue (new one will be initialized automatically)\n";
+			std::cout << "9 - exit\n";
+			std::cout << "=> ";
+			get_num(var);
+		}
+		std::cout << '\n';
+		switch (var) {
+		case(1): {
+			std::string val; size_t pr;
+			std::cout << "Enter the string and its priority (on the other line) to be added to the queue = > ";
+			std::cin.ignore();
+			std::getline(std::cin, val);
+			std::cin >> pr;
+			container.push(Pair<std::string>(val, pr));
+			break;
+		}
+		case (2):
+			if (!container.empty())
+				container.pop();
+			else
+				std::cout << "The queue is already empty\n";
+			break;
+		case (3):
+			if (!container.empty())
+				std::cout << "The first element of the queue is: " << container.front();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (4):
+			
+			if (!container.empty())
+				std::cout << "The last element of the queue is: " << container.back();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (5):
+			std::cout << (bool)container.empty();
+			break;
+		case(6):
+			std::cout << container.size();
+			break;
+		case(7):
+			if (container.empty())
+				std::cout << "The queue is empty";
+			container.out();
+			break;
+		case(8):
+			while (!container.empty())
+				container.pop();
+			break;
+		case(9):
+			return;
+		default:
+			break;
+		}
+		var = 0;
+		wait();
+	}
+}
+
+template<class data_structure>
+void Demonstration::do_line() {
+	data_structure container;
+	int var = 0;
+	while (true) {
+		while (var < 1 || var > 9) {
+			std::cout << "\nPlease, choose what would you like to do:\n";
+			std::cout << "1 - add element to the queue\n";
+			std::cout << "2 - remove element from the queue\n";
+			std::cout << "3 - look at the first element of the queue\n";
+			std::cout << "4 - look at the last element of the queue\n";
+			std::cout << "5 - check if the queue is empty\n";
+			std::cout << "6 - get the size of the queue\n";
+			std::cout << "7 - output the queue\n";
+			std::cout << "8 - delete queue (new one will be initialized automatically)\n";
+			std::cout << "9 - exit\n";
+			std::cout << "=> ";
+			get_num(var);
+		}
+		std::cout << '\n';
+		switch (var) {
+		case(1): {
+			std::cout << "Please, enter two points, by their coordinates, following the priority: ";
+			double var1, var2, var3, var4; size_t var5;
+			std::cin >> var1 >> var2 >> var3 >> var4 >> var5;
+			container.push(Pair<Line>(Line(Pair<double, double>(var1, var2), Pair<double, double>(var3, var4)), var5));
+			break;
+		}
+		case (2):
+			if (!container.empty())
+				container.pop();
+			else
+				std::cout << "The queue is already empty\n";
+			break;
+		case (3):
+			if (!container.empty())
+				std::cout << "The first element of the queue is: " << container.front();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (4):
+			
+			if (!container.empty())
+				std::cout << "The last element of the queue is: " << container.back();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (5):
+			std::cout << (bool)container.empty();
+			break;
+		case(6):
+			std::cout << container.size();
+			break;
+		case(7):
+			if (container.empty())
+				std::cout << "The queue is empty";
+			container.out();
+			break;
+		case(8):
+			while (!container.empty())
+				container.pop();
+			break;
+		case(9):
+			return;
+		default:
+			break;
+		}
+		var = 0;
+		wait();
+	}
+}
+
+template<class data_structure>
+void Demonstration::do_circle() {
+	data_structure container;
+	int var = 0;
+	while (true) {
+		while (var < 1 || var > 9) {
+			std::cout << "\nPlease, choose what would you like to do:\n";
+			std::cout << "1 - add element to the queue\n";
+			std::cout << "2 - remove element from the queue\n";
+			std::cout << "3 - look at the first element of the queue\n";
+			std::cout << "4 - look at the last element of the queue\n";
+			std::cout << "5 - check if the queue is empty\n";
+			std::cout << "6 - get the size of the queue\n";
+			std::cout << "7 - output the queue\n";
+			std::cout << "8 - delete queue (new one will be initialized automatically)\n";
+			std::cout << "9 - exit\n";
+			std::cout << "=> ";
+			get_num(var);
+		}
+		std::cout << '\n';
+		switch (var) {
+		case(1): {
+			std::cout << "Please, enter coordinates of the center of the circle, radius and the priority: ";
+			double var1, var2, var3; size_t var4;
+			std::cin >> var1 >> var2 >> var3 >> var4;
+			container.push(Pair<Circle>(Circle(var1, var2, var3), var4));
+			break;
+		}
+		case (2):
+			if (!container.empty())
+				container.pop();
+			else
+				std::cout << "The queue is already empty\n";
+			break;
+		case (3):
+			if (!container.empty())
+				std::cout << "The first element of the queue is: " << container.front();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (4):
+			
+			if (!container.empty())
+				std::cout << "The last element of the queue is: " << container.back();
+			else
+				std::cout << "The queue is empty";
+			std::cout << '\n';
+			break;
+		case (5):
+			std::cout << (bool)container.empty();
+			break;
+		case(6):
+			std::cout << container.size();
+			break;
+		case(7):
+			if (container.empty())
+				std::cout << "The queue is empty";
+			container.out();
+			break;
+		case(8):
+			while (!container.empty())
+				container.pop();
+			break;
+		case(9):
+			return;
+		default:
+			break;
+		}
+		var = 0;
+		wait();
+	}
 }
 
 #endif // !DEMONSTRATION_H
