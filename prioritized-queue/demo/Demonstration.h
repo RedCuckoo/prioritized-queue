@@ -426,6 +426,10 @@ void Demonstration::show_circle() {
 	std::cout << "\n";
 }
 
+/*!
+\brief Interactive working process on data type of "int"
+\details The function allows user to choose what to do with the queue
+*/
 template<class data_structure>
 void Demonstration::do_int() {
 	data_structure container;
@@ -500,6 +504,10 @@ void Demonstration::do_int() {
 	}
 }
 
+/*!
+\brief Interactive working process on data type of "string"
+\details The function allows user to choose what to do with the queue
+*/
 template<class data_structure>
 void Demonstration::do_string() {
 	data_structure container;
@@ -576,6 +584,10 @@ void Demonstration::do_string() {
 	}
 }
 
+/*!
+\brief Interactive working process on data type of "Line"
+\details The function allows user to choose what to do with the queue
+*/
 template<class data_structure>
 void Demonstration::do_line() {
 	data_structure container;
@@ -650,6 +662,10 @@ void Demonstration::do_line() {
 	}
 }
 
+/*!
+\brief Interactive working process on data type of "Circle"
+\details The function allows user to choose what to do with the queue
+*/
 template<class data_structure>
 void Demonstration::do_circle() {
 	data_structure container;

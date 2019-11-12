@@ -76,7 +76,20 @@ public:
 \return Reference to the ostream, to allow continous streaming
 */
 inline std::ostream& operator<<(std::ostream& out_stream, const Line& to_out) {
-	std::cout << to_out.a << " * x + " << to_out.b << " * y + " << to_out.c << " = 0";
+	double x1 = 0, y1 = ((to_out.b) ? (-to_out.c / to_out.b) : 0);
+	double x2 = ((to_out.a) ? (-to_out.c / to_out.a) : 0), y2 = 0;
+	if (to_out.a && to_out.b) {
+		out_stream << "(" << x1 << "," << y1 << ") , (" << x2 << "," << y2 << ")";
+	}
+	else if (to_out.a) {
+		out_stream << "x = " << (-to_out.c / to_out.a);
+	}
+	else if (to_out.b) {
+		out_stream << "y = " << (-to_out.c / to_out.b);
+	}
+	else {
+		out_stream << "Line isn't correct";
+	}
 	return out_stream;
 }
 
